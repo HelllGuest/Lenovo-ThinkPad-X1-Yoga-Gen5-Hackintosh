@@ -1,6 +1,6 @@
 site_name: "Lenovo X1 Yoga Gen 5 Hackintosh"
 site_description: "EFI and documentation for macOS Ventura 13.7.8 on Lenovo ThinkPad X1 Yoga Gen 5"
-site_author: "Your Name"
+site_author: "HelllGuest"
 site_url: "https://helllguest.github.io/Lenovo-ThinkPad-X1-Yoga-Gen5-Hackintosh"
 
 theme:
@@ -65,5 +65,5 @@ extra:
       link: https://github.com/HelllGuest
   generator: false
   footer:
-    copyright: "© 2025 Your Name • Maintained with ❤️ for the ThinkPad community"
+    copyright: "© 2025 HelllGuest • Maintained with ❤️ for the ThinkPad community"
     last_updated: true
