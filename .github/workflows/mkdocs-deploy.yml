@@ -1,69 +1,34 @@
-site_name: "Lenovo X1 Yoga Gen 5 Hackintosh"
-site_description: "EFI and documentation for macOS Ventura 13.7.8 on Lenovo ThinkPad X1 Yoga Gen 5"
-site_author: "HelllGuest"
-site_url: "https://helllguest.github.io/Lenovo-ThinkPad-X1-Yoga-Gen5-Hackintosh"
+name: Deploy MkDocs Documentation
 
-theme:
-  name: material
-  logo: "docs/assets/banner.svg"
-  favicon: "docs/assets/favicon.ico"
-  palette:
-    - scheme: default
-      primary: "blue"
-      accent: "orange"
-    - scheme: slate
-      primary: "blue"
-      accent: "orange"
-      toggle:
-        icon: material/weather-night
-        name: Switch to light mode
-  features:
-    - navigation.instant
-    - navigation.tabs
-    - search.highlight
-    - search.suggest
-  font:
-    text: "Roboto"
-    code: "Fira Code"
+on:
+  push:
+    branches:
+      - main
 
-extra_css:
-  - "docs/assets/custom.css"
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-markdown_extensions:
-  - admonition
-  - codehilite
-  - toc:
-      permalink: true
-  - pymdownx.arithmatex
-  - pymdownx.details
-  - pymdownx.superfences
-  - pymdownx.highlight
-  - pymdownx.tasklist
-  - pymdownx.keys
-  - pymdownx.tabbed
-  - pymdownx.snippets
-  - pymdownx.inlinehilite
-  - pymdownx.magiclink
-  - pymdownx.betterem
-  - pymdownx.mark
-  - pymdownx.tilde
-  - pymdownx.mermaid2
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
-nav:
-  - Home: index.md
-  - Hardware: hardware.md
-  - ACPI: acpi.md
-  - Config Reference: config_reference.md
-  - EFI Diagram: efi_diagram.md
-  - Peripherals: peripherals.md
-  - Troubleshooting: troubleshooting.md
-  - Changelog: CHANGELOG.md
+      - name: Install MkDocs Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install mkdocs-material pymdown-extensions
 
-extra:
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/HelllGuest
-  generator: false
-  footer:
-    copyright: "© 2025 HelllGuest • Maintained with ❤️ for the ThinkPad community"
-    last_updated: true
+      - name: Build MkDocs Site
+        run: mkdocs build --clean
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          user_name: "Your Name"
+          user_email: "your-email@example.com"

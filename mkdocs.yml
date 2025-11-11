@@ -1,0 +1,55 @@
+site_name: "Lenovo X1 Yoga Gen 5 Hackintosh"
+site_description: "EFI and documentation for macOS Ventura 13.7.8 on Lenovo ThinkPad X1 Yoga Gen 5"
+site_author: "Your Name"
+site_url: "https://yourusername.github.io/Lenovo-X1Y5-Hackintosh"
+theme:
+  name: material
+  logo: "docs/assets/banner.svg"
+  favicon: "docs/assets/favicon.ico"
+  palette:
+    - scheme: default
+      primary: blue
+      accent: orange
+    - scheme: slate
+      primary: blue
+      accent: orange
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - search.highlight
+    - search.suggest
+extra_css:
+  - "docs/assets/custom.css"
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - codehilite
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.tasklist
+  - pymdownx.keys
+  - pymdownx.tabbed
+  - pymdownx.snippets
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.mermaid2
+nav:
+  - Home: index.md
+  - Hardware: hardware.md
+  - ACPI: acpi.md
+  - Config Reference: config_reference.md
+  - EFI Diagram: efi_diagram.md
+  - Peripherals: peripherals.md
+  - Troubleshooting: troubleshooting.md
+  - Changelog: ../CHANGELOG.md
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/yourusername
+  generator: false
+  footer:
+    copyright: "© 2025 HelllGuest • Maintained with ❤️ for the ThinkPad community"
