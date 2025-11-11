@@ -49,6 +49,8 @@ Stable, power-efficient, and close to native macOS experience.
 | **Audio** | Realtek ALC285 codec | ✅ All Outputs Working |
 | **Ports** | 2x USB-C/TB3, 2x USB-A, HDMI | ✅ All Functional |
 
+> For detailed hardware compatibility information, see **[Hardware Compatibility Guide](./docs/hardware.md)**
+
 ---
 
 ## 🧩 Build Information
@@ -59,7 +61,7 @@ Stable, power-efficient, and close to native macOS experience.
 | **OpenCore Version** | 1.0.6 (ACDT 2025-10) |
 | **EFI Revision** | 1.0.6-stable |
 | **SMBIOS** | MacBookPro16,3 |
-| **BIOS Version** | 1.40 (CFG Lock cannot be disabled) |
+| **BIOS Version** | 1.40 (CFG Lock cannot be disabled - see [Hardware Guide](./docs/hardware.md#-cfg-lock-status)) |
 | **Bootloader Mode** | UEFI (Secure Boot Off) |
 | **FileVault** | Enabled |
 | **Tested On** | Lenovo ThinkPad X1 Yoga Gen 5 (20UCS33G00) |
@@ -69,15 +71,14 @@ Stable, power-efficient, and close to native macOS experience.
 ## ⚙️ EFI Directory Structure
 
 ```
-
 EFI/
 ├── BOOT/
 │   └── BOOTx64.efi
 └── OC/
-├── ACPI/
-├── Drivers/
-├── Kexts/
-└── config.plist
+    ├── ACPI/
+    ├── Drivers/
+    ├── Kexts/
+    └── config.plist
 ```
 
 > Reference: **[Full Config Breakdown](./docs/config_reference.md)**
@@ -105,8 +106,10 @@ EFI/
 - **Thunderbolt 3**: Controller visible, DisplayPort works, but advanced hotplug untested
   - External displays via TB3/USB-C work
   - eGPU and other TB3 devices require testing
-  - Optional SSDT-TB.dsl available but not included by default
-- **Some function keys**: May need remapping via YogaSMC  
+  - Optional SSDT-TB.aml available but not included by default
+- **Some function keys**: May need remapping via YogaSMC
+
+> For detailed Thunderbolt 3 support information, see **[Hardware Compatibility Guide](./docs/hardware.md#-thunderbolt-3-support)**  
 
 ---
 
@@ -158,17 +161,6 @@ EFI/
 ### Special Thanks
 - ThinkPad Hackintosh community for testing and feedback
 - All contributors to the Hackintosh ecosystem  
-
----
-
----
-
-## 📚 Documentation
-
-**[View Detailed Config →](./docs/config_reference.md)**  
-**[Latest Updates →](./CHANGELOG.md)**  
-**[Hardware Details →](./docs/hardware.md)**  
-**[Troubleshooting →](./docs/troubleshooting.md)**
 
 ---
 

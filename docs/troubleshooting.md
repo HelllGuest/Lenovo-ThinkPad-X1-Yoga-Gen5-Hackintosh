@@ -55,42 +55,25 @@ sudo kextcache -i /
 
 ## BIOS Settings Issues
 
-### Required BIOS Settings
-If experiencing boot issues, verify these critical settings:
+If experiencing boot issues, verify your BIOS settings match the required configuration.
 
-**Must be Disabled:**
-- Secure Boot (clear all keys if needed)
-- Vt-d (or enable DisableIOMapper quirk)
-- Enhanced Windows Biometrics
-- Intel SGX
-- Device Guard
-- CSM Support
+> For complete BIOS configuration details, see **[Hardware Compatibility Guide](hardware.md#-bios-configuration)**
 
-**Must be Enabled/Set:**
-- UEFI mode (not Legacy)
-- Sleep mode set to "Linux" (not Windows)
+**Quick Checklist:**
+- Sleep mode → **Linux** (required)
+- Secure Boot → **Disabled** (required)
+- Vt-d → **Disabled** (required - or enable DisableIOMapper quirk)
+- Enhanced Windows Biometrics → **Disabled** (required)
+- Intel SGX → **Disabled** (required)
+- Device Guard → **Disabled** (required)
+- UEFI/Legacy → **UEFI** (required)
+- CSM Support → **Disabled** (required)
 
-**Recommended to Disable:**
-- Wake-on-LAN
-- UEFI network stack
-- Thunderbolt BIOS Assist mode
-- Thunderbolt Security
-- Thunderbolt Preboot
-- Intel AMT
-- Fingerprint predesktop
-- Kernel DMA
-- Unused IO ports (WWAN, fingerprint)
+**CFG Lock Note:**
+- Cannot be disabled in standard BIOS menu. This EFI uses `AppleXcpmCfgLock = True` quirk as workaround.
+- See [Hardware Guide](hardware.md#-cfg-lock-status) for detailed information.
 
-### CFG Lock Warning
-- **Cannot be disabled** in standard BIOS menu on X1 Yoga Gen 5
-- Located in engineering menu (not accessible)
-- Standard unlock methods (modified GRUB, RU.efi) **do not work**
-- Direct BIOS write with programmer clip is possible but **dangerous** (breaks TPM)
-- This EFI uses `AppleXcpmCfgLock = True` quirk as workaround
-- Do not attempt to unlock CFG unless you know what you're doing
-
-## T
-hunderbolt 3 Issues
+## Thunderbolt 3 Issues
 
 ### External Display Not Working
 - Verify Thunderbolt controller appears in System Information → Thunderbolt
@@ -100,7 +83,7 @@ hunderbolt 3 Issues
 
 ### eGPU Not Detected
 - eGPU support is **untested** with current EFI
-- May require SSDT-TB.aml patch (not included by default)
+- May require SSDT-TB.aml patch (optional, disabled by default)
 - Check if eGPU is compatible with macOS (AMD GPUs recommended)
 - Ensure Thunderbolt Security is disabled in BIOS
 - Try connecting eGPU before boot
@@ -113,10 +96,9 @@ hunderbolt 3 Issues
 
 ### Enabling SSDT-TB (Optional)
 
-`SSDT-TB.aml` is already compiled and present in `EFI/OC/ACPI/` but **disabled by default**.
+For detailed information on enabling advanced Thunderbolt 3 support, see **[Hardware Compatibility Guide](hardware.md#optional-ssdt-tb-patch)**.
 
-To enable advanced Thunderbolt support:
-
+**Quick Steps:**
 1. Mount EFI partition
 2. Open `config.plist` with ProperTree
 3. Navigate to `ACPI → Add`
@@ -125,12 +107,5 @@ To enable advanced Thunderbolt support:
    - Enabled: `True`
    - Path: `SSDT-TB.aml`
 5. Save and reboot
-
-**What this enables:**
-- Full Thunderbolt 3 device tree (Intel JHL6540 Alpine Ridge)
-- Proper hotplug support for TB3 devices
-- USB 3.1 controller (XHC2) with 2 USB-C ports
-- ThunderboltDROM configuration
-- Better eGPU compatibility (untested)
 
 **Warning:** This patch is experimental. DisplayPort output works without it. Enable only if you need advanced TB3 features or experience issues with TB3 devices.

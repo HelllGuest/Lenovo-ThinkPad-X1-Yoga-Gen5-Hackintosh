@@ -38,13 +38,7 @@ sudo diskutil mount /dev/diskXs1
 
 ### 3. Copy EFI
 
-Replace the EFI folder on your USB installer with the provided `EFI/` directory. Ensure the structure is:
-
-```
-EFI/
-├── BOOT/
-└── OC/
-```
+Replace the EFI folder on your USB installer with the provided `EFI/` directory. Ensure the structure matches the [EFI Directory Structure](../README.md#-efi-directory-structure).
 
 ---
 
@@ -63,39 +57,31 @@ Update your `config.plist` with generated **Serial, MLB, and ROM** values.
 
 ### 5. BIOS Settings
 
-**Required Settings (Bold):**
+**Critical Settings (Required):**
+- Sleep mode → **Linux** (Power section)
+- Secure Boot → **Disabled** (Security section - clear all keys if needed)
+- Vt-d → **Disabled** (Virtualization section - or enable DisableIOMapper quirk)
+- Enhanced Windows Biometrics → **Disabled** (Virtualization section)
+- Intel SGX → **Disabled** (IO Ports section)
+- Device Guard → **Disabled** (IO Ports section)
+- UEFI/Legacy → **UEFI** (Startup section)
+- CSM Support → **Disabled** (Startup section)
 
-* **Config**
-  * Network
-    * Wake-on-LAN → Disabled (recommended)
-    * UEFI network stack → Disabled (recommended)
-* **Power**
-  * Sleep mode → **Linux** (required)
-* **Thunderbolt**
-  * BIOS Assist mode → Disabled (recommended)
-  * Security → Disabled (recommended)
-  * Thunderbolt Preboot → Disabled (recommended)
-  * Intel AMT → Disabled (recommended)
-* **Security**
-  * Fingerprint predesktop → Disabled (recommended)
-  * Secure Boot → **Disabled** (required - clear all keys if needed)
-* **Virtualization**
-  * Kernel DMA → Disabled (recommended)
-  * Vt-d → **Disabled** (required - or enable DisableIOMapper quirk)
-  * Enhanced Windows Biometrics → **Disabled** (required)
-* **IO Ports**
-  * Disable unused devices (WWAN, fingerprint if macOS-only)
-  * Intel SGX → **Disabled** (required)
-  * Device Guard → **Disabled** (required)
-* **Startup**
-  * UEFI/Legacy → **UEFI** (required)
-  * CSM Support → **Disabled** (required)
+**Recommended Settings:**
+- Wake-on-LAN → Disabled
+- UEFI network stack → Disabled
+- Thunderbolt BIOS Assist mode → Disabled
+- Thunderbolt Security → Disabled
+- Thunderbolt Preboot → Disabled
+- Intel AMT → Disabled
+- Fingerprint predesktop → Disabled
+- Kernel DMA → Disabled
+- Disable unused devices (WWAN, fingerprint if macOS-only)
 
 **Important Notes:**
-- **CFG Lock**: Not accessible in standard BIOS menu (requires engineering menu)
-- Standard methods (modified GRUB, RU) do not work on this model
-- Direct BIOS write with programmer clip is possible but dangerous (breaks TPM)
-- This EFI uses `AppleXcpmCfgLock = True` quirk to work around locked CFG
+- **CFG Lock**: Cannot be disabled in standard BIOS menu. This EFI uses `AppleXcpmCfgLock = True` quirk as a workaround. See [Hardware Guide](hardware.md#-cfg-lock-status) for details.
+
+> For complete BIOS configuration details, see **[Hardware Compatibility Guide](hardware.md#-bios-configuration)**
 
 ---
 
