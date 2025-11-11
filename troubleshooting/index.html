@@ -559,46 +559,18 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="BIOS Settings Issues">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#required-bios-settings" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Required BIOS Settings
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cfg-lock-warning" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CFG Lock Warning
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
-  <a href="#t" class="md-nav__link">
+  <a href="#thunderbolt-3-issues" class="md-nav__link">
     <span class="md-ellipsis">
       
-        T
+        Thunderbolt 3 Issues
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="T">
+    <nav class="md-nav" aria-label="Thunderbolt 3 Issues">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -792,46 +764,18 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="BIOS Settings Issues">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#required-bios-settings" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Required BIOS Settings
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cfg-lock-warning" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CFG Lock Warning
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
-  <a href="#t" class="md-nav__link">
+  <a href="#thunderbolt-3-issues" class="md-nav__link">
     <span class="md-ellipsis">
       
-        T
+        Thunderbolt 3 Issues
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="T">
+    <nav class="md-nav" aria-label="Thunderbolt 3 Issues">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -963,39 +907,23 @@
 <li>Verify EC patches are working (ESEN region)</li>
 </ul>
 <h2 id="bios-settings-issues">BIOS Settings Issues<a class="headerlink" href="#bios-settings-issues" title="Permanent link">&para;</a></h2>
-<h3 id="required-bios-settings">Required BIOS Settings<a class="headerlink" href="#required-bios-settings" title="Permanent link">&para;</a></h3>
-<p>If experiencing boot issues, verify these critical settings:</p>
-<p><strong>Must be Disabled:</strong>
-- Secure Boot (clear all keys if needed)
-- Vt-d (or enable DisableIOMapper quirk)
-- Enhanced Windows Biometrics
-- Intel SGX
-- Device Guard
-- CSM Support</p>
-<p><strong>Must be Enabled/Set:</strong>
-- UEFI mode (not Legacy)
-- Sleep mode set to "Linux" (not Windows)</p>
-<p><strong>Recommended to Disable:</strong>
-- Wake-on-LAN
-- UEFI network stack
-- Thunderbolt BIOS Assist mode
-- Thunderbolt Security
-- Thunderbolt Preboot
-- Intel AMT
-- Fingerprint predesktop
-- Kernel DMA
-- Unused IO ports (WWAN, fingerprint)</p>
-<h3 id="cfg-lock-warning">CFG Lock Warning<a class="headerlink" href="#cfg-lock-warning" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>Cannot be disabled</strong> in standard BIOS menu on X1 Yoga Gen 5</li>
-<li>Located in engineering menu (not accessible)</li>
-<li>Standard unlock methods (modified GRUB, RU.efi) <strong>do not work</strong></li>
-<li>Direct BIOS write with programmer clip is possible but <strong>dangerous</strong> (breaks TPM)</li>
-<li>This EFI uses <code>AppleXcpmCfgLock = True</code> quirk as workaround</li>
-<li>Do not attempt to unlock CFG unless you know what you're doing</li>
-</ul>
-<h2 id="t">T<a class="headerlink" href="#t" title="Permanent link">&para;</a></h2>
-<p>hunderbolt 3 Issues</p>
+<p>If experiencing boot issues, verify your BIOS settings match the required configuration.</p>
+<blockquote>
+<p>For complete BIOS configuration details, see <strong><a href="../hardware/#-bios-configuration">Hardware Compatibility Guide</a></strong></p>
+</blockquote>
+<p><strong>Quick Checklist:</strong>
+- Sleep mode → <strong>Linux</strong> (required)
+- Secure Boot → <strong>Disabled</strong> (required)
+- Vt-d → <strong>Disabled</strong> (required - or enable DisableIOMapper quirk)
+- Enhanced Windows Biometrics → <strong>Disabled</strong> (required)
+- Intel SGX → <strong>Disabled</strong> (required)
+- Device Guard → <strong>Disabled</strong> (required)
+- UEFI/Legacy → <strong>UEFI</strong> (required)
+- CSM Support → <strong>Disabled</strong> (required)</p>
+<p><strong>CFG Lock Note:</strong>
+- Cannot be disabled in standard BIOS menu. This EFI uses <code>AppleXcpmCfgLock = True</code> quirk as workaround.
+- See <a href="../hardware/#-cfg-lock-status">Hardware Guide</a> for detailed information.</p>
+<h2 id="thunderbolt-3-issues">Thunderbolt 3 Issues<a class="headerlink" href="#thunderbolt-3-issues" title="Permanent link">&para;</a></h2>
 <h3 id="external-display-not-working">External Display Not Working<a class="headerlink" href="#external-display-not-working" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Verify Thunderbolt controller appears in System Information → Thunderbolt</li>
@@ -1006,7 +934,7 @@
 <h3 id="egpu-not-detected">eGPU Not Detected<a class="headerlink" href="#egpu-not-detected" title="Permanent link">&para;</a></h3>
 <ul>
 <li>eGPU support is <strong>untested</strong> with current EFI</li>
-<li>May require SSDT-TB.aml patch (not included by default)</li>
+<li>May require SSDT-TB.aml patch (optional, disabled by default)</li>
 <li>Check if eGPU is compatible with macOS (AMD GPUs recommended)</li>
 <li>Ensure Thunderbolt Security is disabled in BIOS</li>
 <li>Try connecting eGPU before boot</li>
@@ -1019,24 +947,16 @@
 <li>Check device compatibility with macOS</li>
 </ul>
 <h3 id="enabling-ssdt-tb-optional">Enabling SSDT-TB (Optional)<a class="headerlink" href="#enabling-ssdt-tb-optional" title="Permanent link">&para;</a></h3>
-<p><code>SSDT-TB.aml</code> is already compiled and present in <code>EFI/OC/ACPI/</code> but <strong>disabled by default</strong>.</p>
-<p>To enable advanced Thunderbolt support:</p>
-<ol>
-<li>Mount EFI partition</li>
-<li>Open <code>config.plist</code> with ProperTree</li>
-<li>Navigate to <code>ACPI → Add</code></li>
-<li>Add new dictionary entry:</li>
-<li>Comment: <code>Thunderbolt 3 Alpine Ridge Support</code></li>
-<li>Enabled: <code>True</code></li>
-<li>Path: <code>SSDT-TB.aml</code></li>
-<li>Save and reboot</li>
-</ol>
-<p><strong>What this enables:</strong>
-- Full Thunderbolt 3 device tree (Intel JHL6540 Alpine Ridge)
-- Proper hotplug support for TB3 devices
-- USB 3.1 controller (XHC2) with 2 USB-C ports
-- ThunderboltDROM configuration
-- Better eGPU compatibility (untested)</p>
+<p>For detailed information on enabling advanced Thunderbolt 3 support, see <strong><a href="../hardware/#optional-ssdt-tb-patch">Hardware Compatibility Guide</a></strong>.</p>
+<p><strong>Quick Steps:</strong>
+1. Mount EFI partition
+2. Open <code>config.plist</code> with ProperTree
+3. Navigate to <code>ACPI → Add</code>
+4. Add new dictionary entry:
+   - Comment: <code>Thunderbolt 3 Alpine Ridge Support</code>
+   - Enabled: <code>True</code>
+   - Path: <code>SSDT-TB.aml</code>
+5. Save and reboot</p>
 <p><strong>Warning:</strong> This patch is experimental. DisplayPort output works without it. Enable only if you need advanced TB3 features or experience issues with TB3 devices.</p>
 
 

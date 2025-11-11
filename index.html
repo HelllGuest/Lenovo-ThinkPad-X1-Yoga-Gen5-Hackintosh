@@ -763,11 +763,7 @@ sudo<span class="w"> </span>diskutil<span class="w"> </span>mount<span class="w"
 </code></pre></div>
 <hr />
 <h3 id="3-copy-efi">3. Copy EFI<a class="headerlink" href="#3-copy-efi" title="Permanent link">&para;</a></h3>
-<p>Replace the EFI folder on your USB installer with the provided <code>EFI/</code> directory. Ensure the structure is:</p>
-<div class="highlight"><pre><span></span><code>EFI/
-├── BOOT/
-└── OC/
-</code></pre></div>
+<p>Replace the EFI folder on your USB installer with the provided <code>EFI/</code> directory. Ensure the structure matches the <a href="../README.md#-efi-directory-structure">EFI Directory Structure</a>.</p>
 <hr />
 <h3 id="4-configure-serial-numbers">4. Configure Serial Numbers<a class="headerlink" href="#4-configure-serial-numbers" title="Permanent link">&para;</a></h3>
 <p>Run <strong>GenSMBIOS</strong> to generate unique serials:</p>
@@ -777,41 +773,30 @@ sudo<span class="w"> </span>diskutil<span class="w"> </span>mount<span class="w"
 <p>Update your <code>config.plist</code> with generated <strong>Serial, MLB, and ROM</strong> values.</p>
 <hr />
 <h3 id="5-bios-settings">5. BIOS Settings<a class="headerlink" href="#5-bios-settings" title="Permanent link">&para;</a></h3>
-<p><strong>Required Settings (Bold):</strong></p>
-<ul>
-<li><strong>Config</strong></li>
-<li>Network<ul>
-<li>Wake-on-LAN → Disabled (recommended)</li>
-<li>UEFI network stack → Disabled (recommended)</li>
-</ul>
-</li>
-<li><strong>Power</strong></li>
-<li>Sleep mode → <strong>Linux</strong> (required)</li>
-<li><strong>Thunderbolt</strong></li>
-<li>BIOS Assist mode → Disabled (recommended)</li>
-<li>Security → Disabled (recommended)</li>
-<li>Thunderbolt Preboot → Disabled (recommended)</li>
-<li>Intel AMT → Disabled (recommended)</li>
-<li><strong>Security</strong></li>
-<li>Fingerprint predesktop → Disabled (recommended)</li>
-<li>Secure Boot → <strong>Disabled</strong> (required - clear all keys if needed)</li>
-<li><strong>Virtualization</strong></li>
-<li>Kernel DMA → Disabled (recommended)</li>
-<li>Vt-d → <strong>Disabled</strong> (required - or enable DisableIOMapper quirk)</li>
-<li>Enhanced Windows Biometrics → <strong>Disabled</strong> (required)</li>
-<li><strong>IO Ports</strong></li>
-<li>Disable unused devices (WWAN, fingerprint if macOS-only)</li>
-<li>Intel SGX → <strong>Disabled</strong> (required)</li>
-<li>Device Guard → <strong>Disabled</strong> (required)</li>
-<li><strong>Startup</strong></li>
-<li>UEFI/Legacy → <strong>UEFI</strong> (required)</li>
-<li>CSM Support → <strong>Disabled</strong> (required)</li>
-</ul>
+<p><strong>Critical Settings (Required):</strong>
+- Sleep mode → <strong>Linux</strong> (Power section)
+- Secure Boot → <strong>Disabled</strong> (Security section - clear all keys if needed)
+- Vt-d → <strong>Disabled</strong> (Virtualization section - or enable DisableIOMapper quirk)
+- Enhanced Windows Biometrics → <strong>Disabled</strong> (Virtualization section)
+- Intel SGX → <strong>Disabled</strong> (IO Ports section)
+- Device Guard → <strong>Disabled</strong> (IO Ports section)
+- UEFI/Legacy → <strong>UEFI</strong> (Startup section)
+- CSM Support → <strong>Disabled</strong> (Startup section)</p>
+<p><strong>Recommended Settings:</strong>
+- Wake-on-LAN → Disabled
+- UEFI network stack → Disabled
+- Thunderbolt BIOS Assist mode → Disabled
+- Thunderbolt Security → Disabled
+- Thunderbolt Preboot → Disabled
+- Intel AMT → Disabled
+- Fingerprint predesktop → Disabled
+- Kernel DMA → Disabled
+- Disable unused devices (WWAN, fingerprint if macOS-only)</p>
 <p><strong>Important Notes:</strong>
-- <strong>CFG Lock</strong>: Not accessible in standard BIOS menu (requires engineering menu)
-- Standard methods (modified GRUB, RU) do not work on this model
-- Direct BIOS write with programmer clip is possible but dangerous (breaks TPM)
-- This EFI uses <code>AppleXcpmCfgLock = True</code> quirk to work around locked CFG</p>
+- <strong>CFG Lock</strong>: Cannot be disabled in standard BIOS menu. This EFI uses <code>AppleXcpmCfgLock = True</code> quirk as a workaround. See <a href="hardware/#-cfg-lock-status">Hardware Guide</a> for details.</p>
+<blockquote>
+<p>For complete BIOS configuration details, see <strong><a href="hardware/#-bios-configuration">Hardware Compatibility Guide</a></strong></p>
+</blockquote>
 <hr />
 <h3 id="6-boot-install">6. Boot &amp; Install<a class="headerlink" href="#6-boot-install" title="Permanent link">&para;</a></h3>
 <ol>
