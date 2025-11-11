@@ -1,0 +1,1195 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../efi_diagram/">
+      
+      
+        <link rel="next" href="../peripherals/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>🖥️ Hardware Compatibility – X1 Yoga Gen 5 - Lenovo ThinkPad X1 Yoga Gen 5 Hackintosh</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#hardware-compatibility-x1-yoga-gen-5" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Lenovo ThinkPad X1 Yoga Gen 5 Hackintosh" class="md-header__button md-logo" aria-label="Lenovo ThinkPad X1 Yoga Gen 5 Hackintosh" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Lenovo ThinkPad X1 Yoga Gen 5 Hackintosh
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              🖥️ Hardware Compatibility – X1 Yoga Gen 5
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Lenovo ThinkPad X1 Yoga Gen 5 Hackintosh" class="md-nav__button md-logo" aria-label="Lenovo ThinkPad X1 Yoga Gen 5 Hackintosh" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Lenovo ThinkPad X1 Yoga Gen 5 Hackintosh
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧭 Installation &amp; Setup Guide – X1 Yoga Gen 5 Hackintosh
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acpi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⚙️ ACPI Configuration – X1 Yoga Gen 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../config_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⚙️ OpenCore Config Reference – Lenovo ThinkPad X1 Yoga Gen 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../efi_diagram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🗺️ EFI / ACPI / Kexts / Boot Flow – X1 Yoga Gen 5 Hackintosh
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🖥️ Hardware Compatibility – X1 Yoga Gen 5
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🖥️ Hardware Compatibility – X1 Yoga Gen 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#confirmed-working" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ Confirmed Working
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partial-or-unsupported" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ Partial or Unsupported
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bios-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔧 BIOS Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 BIOS Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#critical-settings-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Critical Settings (Required)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recommended-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cfg-lock-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ CFG Lock Status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bios-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BIOS Version
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#thunderbolt-3-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚡ Thunderbolt 3 Support
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚡ Thunderbolt 3 Support">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#current-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Current Status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hardware-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hardware Details
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-ssdt-tb-patch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional SSDT-TB Patch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#thunderbolt-bios-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Thunderbolt BIOS Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../peripherals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🖇️ Optional Peripherals &amp; Upgrades – X1 Yoga Gen 5 Hackintosh
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧰 Troubleshooting – X1 Yoga Gen 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#confirmed-working" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ Confirmed Working
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partial-or-unsupported" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ Partial or Unsupported
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bios-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔧 BIOS Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 BIOS Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#critical-settings-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Critical Settings (Required)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recommended-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cfg-lock-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ CFG Lock Status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bios-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BIOS Version
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#thunderbolt-3-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚡ Thunderbolt 3 Support
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚡ Thunderbolt 3 Support">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#current-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Current Status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hardware-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hardware Details
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-ssdt-tb-patch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional SSDT-TB Patch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#thunderbolt-bios-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Thunderbolt BIOS Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="hardware-compatibility-x1-yoga-gen-5">🖥️ Hardware Compatibility – X1 Yoga Gen 5<a class="headerlink" href="#hardware-compatibility-x1-yoga-gen-5" title="Permanent link">&para;</a></h1>
+<h2 id="confirmed-working">✅ Confirmed Working<a class="headerlink" href="#confirmed-working" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Notes</th>
+<th>Implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wi-Fi (Intel AX201)</td>
+<td>Wi-Fi 6 speeds</td>
+<td>AirportItlwm.kext</td>
+</tr>
+<tr>
+<td>Bluetooth 5.1</td>
+<td>Full LE support</td>
+<td>IntelBluetoothFirmware + IntelBTPatcher + BlueToolFixup</td>
+</tr>
+<tr>
+<td>Audio (ALC285)</td>
+<td>All outputs working</td>
+<td>AppleALC.kext (Layout ID 71 via DeviceProperties)</td>
+</tr>
+<tr>
+<td>Trackpad (I2C)</td>
+<td>Multi-touch gestures</td>
+<td>VoodooI2C + VoodooI2CHID</td>
+</tr>
+<tr>
+<td>TrackPoint</td>
+<td>Full support</td>
+<td>VoodooRMI + RMII2C</td>
+</tr>
+<tr>
+<td>Keyboard</td>
+<td>All keys working</td>
+<td>VoodooPS2Controller</td>
+</tr>
+<tr>
+<td>Battery</td>
+<td>Accurate readings</td>
+<td>SMCBatteryManager + EC patches in SSDT-ALL</td>
+</tr>
+<tr>
+<td>Brightness</td>
+<td>Smooth control</td>
+<td>PNLF in SSDT-ALL + BrightnessKeys.kext</td>
+</tr>
+<tr>
+<td>Ambient Light</td>
+<td>Auto brightness</td>
+<td>ALS0 in SSDT-ALL + SMCLightSensor</td>
+</tr>
+<tr>
+<td>USB Ports</td>
+<td>All functional</td>
+<td>USBToolBox + USBMap.kext (RHUB disabled)</td>
+</tr>
+<tr>
+<td>Ethernet</td>
+<td>Via adapter</td>
+<td>IntelMausi.kext</td>
+</tr>
+<tr>
+<td>NVMe SSD</td>
+<td>Optimized</td>
+<td>NVMeFix.kext</td>
+</tr>
+<tr>
+<td>CPU Power</td>
+<td>Native PM</td>
+<td>PLUG _DSM in SSDT-ALL</td>
+</tr>
+<tr>
+<td>Sleep/Wake</td>
+<td>Stable</td>
+<td>HibernationFixup + RTCMemoryFixup</td>
+</tr>
+<tr>
+<td>ThinkPad Features</td>
+<td>Fan, sensors, HKEY</td>
+<td>YogaSMC.kext + EC HKEY in SSDT-ALL</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="partial-or-unsupported">⚠️ Partial or Unsupported<a class="headerlink" href="#partial-or-unsupported" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Touchscreen</td>
+<td>Basic touch only (no gestures)</td>
+</tr>
+<tr>
+<td>Fingerprint Reader</td>
+<td>Unsupported in macOS</td>
+</tr>
+<tr>
+<td>Thunderbolt 3</td>
+<td>Controller visible, DP works, advanced features untested</td>
+</tr>
+<tr>
+<td>eGPU</td>
+<td>Untested (requires SSDT-TB.aml)</td>
+</tr>
+<tr>
+<td>TB3 Hotplug</td>
+<td>Limited (requires SSDT-TB.aml)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="bios-configuration">🔧 BIOS Configuration<a class="headerlink" href="#bios-configuration" title="Permanent link">&para;</a></h2>
+<h3 id="critical-settings-required">Critical Settings (Required)<a class="headerlink" href="#critical-settings-required" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Location</th>
+<th>Value</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sleep mode</td>
+<td>Power</td>
+<td><strong>Linux</strong></td>
+<td>Required for proper sleep/wake</td>
+</tr>
+<tr>
+<td>Secure Boot</td>
+<td>Security</td>
+<td><strong>Disabled</strong></td>
+<td>macOS incompatible</td>
+</tr>
+<tr>
+<td>Vt-d</td>
+<td>Virtualization</td>
+<td><strong>Disabled</strong></td>
+<td>Or use DisableIOMapper quirk</td>
+</tr>
+<tr>
+<td>Enhanced Windows Biometrics</td>
+<td>Virtualization</td>
+<td><strong>Disabled</strong></td>
+<td>macOS incompatible</td>
+</tr>
+<tr>
+<td>Intel SGX</td>
+<td>IO Ports</td>
+<td><strong>Disabled</strong></td>
+<td>Security feature conflicts</td>
+</tr>
+<tr>
+<td>Device Guard</td>
+<td>IO Ports</td>
+<td><strong>Disabled</strong></td>
+<td>Windows security feature</td>
+</tr>
+<tr>
+<td>UEFI/Legacy</td>
+<td>Startup</td>
+<td><strong>UEFI</strong></td>
+<td>Legacy not supported</td>
+</tr>
+<tr>
+<td>CSM Support</td>
+<td>Startup</td>
+<td><strong>Disabled</strong></td>
+<td>UEFI-only mode</td>
+</tr>
+</tbody>
+</table>
+<h3 id="recommended-settings">Recommended Settings<a class="headerlink" href="#recommended-settings" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Location</th>
+<th>Value</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wake-on-LAN</td>
+<td>Config → Network</td>
+<td>Disabled</td>
+<td>Prevents unwanted wake</td>
+</tr>
+<tr>
+<td>UEFI network stack</td>
+<td>Config → Network</td>
+<td>Disabled</td>
+<td>Not needed</td>
+</tr>
+<tr>
+<td>Thunderbolt BIOS Assist</td>
+<td>Thunderbolt</td>
+<td>Disabled</td>
+<td>Better compatibility</td>
+</tr>
+<tr>
+<td>Thunderbolt Security</td>
+<td>Thunderbolt</td>
+<td>Disabled</td>
+<td>Simplifies setup</td>
+</tr>
+<tr>
+<td>Thunderbolt Preboot</td>
+<td>Thunderbolt</td>
+<td>Disabled</td>
+<td>Not needed</td>
+</tr>
+<tr>
+<td>Intel AMT</td>
+<td>Thunderbolt</td>
+<td>Disabled</td>
+<td>Not used</td>
+</tr>
+<tr>
+<td>Fingerprint predesktop</td>
+<td>Security</td>
+<td>Disabled</td>
+<td>Not supported in macOS</td>
+</tr>
+<tr>
+<td>Kernel DMA</td>
+<td>Virtualization</td>
+<td>Disabled</td>
+<td>Better compatibility</td>
+</tr>
+<tr>
+<td>WWAN</td>
+<td>IO Ports</td>
+<td>Disabled</td>
+<td>If not using cellular</td>
+</tr>
+<tr>
+<td>Fingerprint</td>
+<td>IO Ports</td>
+<td>Disabled</td>
+<td>If macOS-only</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cfg-lock-status">⚠️ CFG Lock Status<a class="headerlink" href="#cfg-lock-status" title="Permanent link">&para;</a></h3>
+<p><strong>Important:</strong> CFG Lock <strong>cannot be disabled</strong> on X1 Yoga Gen 5 through standard BIOS menu.</p>
+<ul>
+<li>Located in hidden engineering menu</li>
+<li>Standard unlock methods (modified GRUB, RU.efi) <strong>do not work</strong></li>
+<li>Direct BIOS write with programmer clip possible but <strong>dangerous</strong>:</li>
+<li>Requires hardware programmer and clip</li>
+<li>Risk of bricking motherboard</li>
+<li><strong>Breaks TPM</strong> functionality</li>
+<li>Voids warranty</li>
+</ul>
+<p><strong>Solution:</strong> This EFI uses <code>AppleXcpmCfgLock = True</code> kernel quirk to work around locked CFG. No BIOS modification needed.</p>
+<h3 id="bios-version">BIOS Version<a class="headerlink" href="#bios-version" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Current tested:</strong> 1.40</li>
+<li><strong>Previously tested:</strong> 1.31+</li>
+<li><strong>Recommended:</strong> Keep BIOS updated to latest stable version</li>
+<li><strong>Download:</strong> <a href="https://pcsupport.lenovo.com/us/en/products/laptops-and-netbooks/thinkpad-x-series-laptops/thinkpad-x1-yoga-gen-5-type-20ub-20uc/downloads/driver-list/">Lenovo Support Site</a></li>
+<li><strong>Note:</strong> BIOS updates may reset settings - verify all settings after update</li>
+</ul>
+<hr />
+<h2 id="thunderbolt-3-support">⚡ Thunderbolt 3 Support<a class="headerlink" href="#thunderbolt-3-support" title="Permanent link">&para;</a></h2>
+<h3 id="current-status">Current Status<a class="headerlink" href="#current-status" title="Permanent link">&para;</a></h3>
+<p><strong>Working:</strong>
+- Thunderbolt 3 controller visible in System Information
+- External displays via USB-C/Thunderbolt ports (DisplayPort mode)
+- USB-C data transfer
+- Hotplug external monitors</p>
+<p><strong>Untested/Limited:</strong>
+- eGPU (external graphics card)
+- Thunderbolt 3 storage devices
+- Thunderbolt 3 docks with advanced features
+- Daisy-chaining multiple TB3 devices</p>
+<h3 id="hardware-details">Hardware Details<a class="headerlink" href="#hardware-details" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Controller:</strong> Intel JHL6540 Alpine Ridge Thunderbolt 3 (Low Power)</li>
+<li><strong>Ports:</strong> 2x USB-C with Thunderbolt 3 support</li>
+<li><strong>Location:</strong> PCI Root Port 13 (RP13)</li>
+</ul>
+<h3 id="optional-ssdt-tb-patch">Optional SSDT-TB Patch<a class="headerlink" href="#optional-ssdt-tb-patch" title="Permanent link">&para;</a></h3>
+<p>An optional <code>SSDT-TB.aml</code> file is <strong>included but disabled by default</strong>:</p>
+<p><strong>What it does:</strong>
+- Creates full Thunderbolt 3 device tree for RP13
+- Adds UPSB (Upstream Bridge) and DSB0-6 (Downstream Bridge) devices
+- Implements NHI0 (Native Host Interface) controller
+- Configures XHC2 (USB 3.1 controller) for TB3 ports with 2 USB-C ports
+- Adds ThunderboltDROM and ThunderboltConfig properties
+- Enables proper device removal status (_RMV) for hotplug
+- Implements DTGP method for device properties</p>
+<p><strong>Device Tree:</strong>
+<div class="highlight"><pre><span></span><code>RP13 (Root Port 13)
+└── UPSB (Upstream Bridge)
+    ├── DSB0 (Downstream Bridge 0)
+    │   └── NHI0 (Thunderbolt Controller)
+    ├── DSB1 (Downstream Bridge 1) - Hotplug capable
+    ├── DSB2 (Downstream Bridge 2)
+    │   └── XHC2 (USB 3.1 Controller)
+    │       └── RHUB (Root Hub)
+    │           ├── SSP1 (USB-C Port 1)
+    │           └── SSP2 (USB-C Port 2)
+    └── DSB4 (Downstream Bridge 4) - Hotplug capable
+</code></pre></div></p>
+<p><strong>To enable:</strong>
+1. Open <code>config.plist</code> with ProperTree or text editor
+2. Navigate to <code>ACPI → Add</code>
+3. Add new entry:
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dict&gt;</span>
+<span class="w">    </span><span class="nt">&lt;key&gt;</span>Comment<span class="nt">&lt;/key&gt;</span>
+<span class="w">    </span><span class="nt">&lt;string&gt;</span>Thunderbolt<span class="w"> </span>3<span class="w"> </span>Alpine<span class="w"> </span>Ridge<span class="w"> </span>Support<span class="nt">&lt;/string&gt;</span>
+<span class="w">    </span><span class="nt">&lt;key&gt;</span>Enabled<span class="nt">&lt;/key&gt;</span>
+<span class="w">    </span><span class="nt">&lt;true/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;key&gt;</span>Path<span class="nt">&lt;/key&gt;</span>
+<span class="w">    </span><span class="nt">&lt;string&gt;</span>SSDT-TB.aml<span class="nt">&lt;/string&gt;</span>
+<span class="nt">&lt;/dict&gt;</span>
+</code></pre></div>
+4. Save and reboot</p>
+<p><strong>Current Status:</strong>
+- ✅ File compiled and present in <code>EFI/OC/ACPI/SSDT-TB.aml</code>
+- ❌ Not enabled in config.plist (disabled by default)
+- ⚠️ Requires testing with actual TB3 devices (eGPU, TB3 storage, TB3 docks)
+- ✅ DisplayPort output works without this patch</p>
+<p><strong>Note:</strong> This patch is experimental. Basic DisplayPort functionality works without it. Enable only if you need advanced Thunderbolt features or have issues with TB3 devices.</p>
+<h3 id="thunderbolt-bios-settings">Thunderbolt BIOS Settings<a class="headerlink" href="#thunderbolt-bios-settings" title="Permanent link">&para;</a></h3>
+<p>For best Thunderbolt compatibility:
+- Thunderbolt BIOS Assist mode → Disabled
+- Thunderbolt Security → Disabled (or set to "No Security")
+- Thunderbolt Preboot → Disabled
+- Intel VT-d → Disabled (or use DisableIOMapper quirk)</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

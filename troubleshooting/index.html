@@ -1,0 +1,1097 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../peripherals/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>🧰 Troubleshooting – X1 Yoga Gen 5 - Lenovo ThinkPad X1 Yoga Gen 5 Hackintosh</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#troubleshooting-x1-yoga-gen-5" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Lenovo ThinkPad X1 Yoga Gen 5 Hackintosh" class="md-header__button md-logo" aria-label="Lenovo ThinkPad X1 Yoga Gen 5 Hackintosh" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Lenovo ThinkPad X1 Yoga Gen 5 Hackintosh
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              🧰 Troubleshooting – X1 Yoga Gen 5
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Lenovo ThinkPad X1 Yoga Gen 5 Hackintosh" class="md-nav__button md-logo" aria-label="Lenovo ThinkPad X1 Yoga Gen 5 Hackintosh" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Lenovo ThinkPad X1 Yoga Gen 5 Hackintosh
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧭 Installation &amp; Setup Guide – X1 Yoga Gen 5 Hackintosh
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acpi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⚙️ ACPI Configuration – X1 Yoga Gen 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../config_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⚙️ OpenCore Config Reference – Lenovo ThinkPad X1 Yoga Gen 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../efi_diagram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🗺️ EFI / ACPI / Kexts / Boot Flow – X1 Yoga Gen 5 Hackintosh
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🖥️ Hardware Compatibility – X1 Yoga Gen 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../peripherals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🖇️ Optional Peripherals &amp; Upgrades – X1 Yoga Gen 5 Hackintosh
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧰 Troubleshooting – X1 Yoga Gen 5
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧰 Troubleshooting – X1 Yoga Gen 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sleepwake-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sleep/Wake Issues
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#audio-not-working" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audio Not Working
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trackpadtrackpoint-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trackpad/TrackPoint Issues
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#brightness-control-not-working" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Brightness Control Not Working
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wi-fi-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wi-Fi Issues
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#battery-not-showing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Battery Not Showing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usb-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        USB Issues
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nvram-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NVRAM Issues
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#yogasmcthinkpad-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        YogaSMC/ThinkPad Features
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bios-settings-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BIOS Settings Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="BIOS Settings Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-bios-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required BIOS Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cfg-lock-warning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CFG Lock Warning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        T
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="T">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#external-display-not-working" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External Display Not Working
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#egpu-not-detected" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        eGPU Not Detected
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#thunderbolt-device-not-recognized" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Thunderbolt Device Not Recognized
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enabling-ssdt-tb-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enabling SSDT-TB (Optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sleepwake-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sleep/Wake Issues
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#audio-not-working" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audio Not Working
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trackpadtrackpoint-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trackpad/TrackPoint Issues
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#brightness-control-not-working" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Brightness Control Not Working
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wi-fi-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wi-Fi Issues
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#battery-not-showing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Battery Not Showing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usb-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        USB Issues
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nvram-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NVRAM Issues
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#yogasmcthinkpad-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        YogaSMC/ThinkPad Features
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bios-settings-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BIOS Settings Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="BIOS Settings Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-bios-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required BIOS Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cfg-lock-warning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CFG Lock Warning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        T
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="T">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#external-display-not-working" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External Display Not Working
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#egpu-not-detected" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        eGPU Not Detected
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#thunderbolt-device-not-recognized" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Thunderbolt Device Not Recognized
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enabling-ssdt-tb-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enabling SSDT-TB (Optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="troubleshooting-x1-yoga-gen-5">🧰 Troubleshooting – X1 Yoga Gen 5<a class="headerlink" href="#troubleshooting-x1-yoga-gen-5" title="Permanent link">&para;</a></h1>
+<h2 id="sleepwake-issues">Sleep/Wake Issues<a class="headerlink" href="#sleepwake-issues" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Ensure <code>HibernationFixup.kext</code> is loaded</li>
+<li>Check <code>RTCMemoryFixup.kext</code> is enabled</li>
+<li>Boot args include <code>rtcfx_exclude=80-AB</code></li>
+<li>Remove external USB devices blocking sleep</li>
+<li>Verify HPET IRQ patches are applied in SSDT-ALL</li>
+</ul>
+<h2 id="audio-not-working">Audio Not Working<a class="headerlink" href="#audio-not-working" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Layout ID 71 is set via DeviceProperties in config.plist at <code>PciRoot(0x0)/Pci(0x1f,0x3)</code></li>
+<li>Ensure AppleALC.kext is loaded</li>
+<li>Check device-id is set correctly for ALC285</li>
+<li>Rebuild kext cache:
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>kextcache<span class="w"> </span>-i<span class="w"> </span>/
+</code></pre></div></li>
+</ul>
+<h2 id="trackpadtrackpoint-issues">Trackpad/TrackPoint Issues<a class="headerlink" href="#trackpadtrackpoint-issues" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Ensure VoodooI2C, VoodooI2CHID, and VoodooRMI are loaded</li>
+<li>Check SSDT-ALL sets <code>TPDM = 0</code> and <code>OSYS = 0x07DF</code> for TPD0</li>
+<li>Verify I2C device is enabled in BIOS</li>
+</ul>
+<h2 id="brightness-control-not-working">Brightness Control Not Working<a class="headerlink" href="#brightness-control-not-working" title="Permanent link">&para;</a></h2>
+<ul>
+<li>PNLF device in SSDT-ALL should be loaded</li>
+<li>Check BrightnessKeys.kext is enabled</li>
+<li>Verify WhateverGreen.kext is loaded</li>
+<li>Intel UHD 620 framebuffer patches in DeviceProperties</li>
+</ul>
+<h2 id="wi-fi-issues">Wi-Fi Issues<a class="headerlink" href="#wi-fi-issues" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Correct <code>AirportItlwm.kext</code> version for macOS Ventura</li>
+<li>Ensure IntelBluetoothFirmware and IntelBTPatcher are loaded</li>
+<li>Remove old network interfaces in System Settings → Network</li>
+</ul>
+<h2 id="battery-not-showing">Battery Not Showing<a class="headerlink" href="#battery-not-showing" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Check SMCBatteryManager.kext is loaded</li>
+<li>Verify EC patches (RECB/WECB methods) in SSDT-ALL</li>
+<li>Ensure ECEnabler.kext is enabled</li>
+<li>BAT1 device should be present under EC</li>
+</ul>
+<h2 id="usb-issues">USB Issues<a class="headerlink" href="#usb-issues" title="Permanent link">&para;</a></h2>
+<ul>
+<li>RHUB is disabled in SSDT-ALL for USBMap.kext</li>
+<li>Verify USBToolBox.kext and USBMap.kext are loaded</li>
+<li>Check USB power is set via USBX in SSDT-ALL (5100mA)</li>
+</ul>
+<h2 id="nvram-issues">NVRAM Issues<a class="headerlink" href="#nvram-issues" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Reset NVRAM from OpenCore picker</li>
+<li>Check <code>RequestBootVarRouting = True</code> in UEFI Quirks</li>
+<li>Verify boot-args are saved: <code>rtcfx_exclude=80-AB revpatch=sbvmm</code></li>
+</ul>
+<h2 id="yogasmcthinkpad-features">YogaSMC/ThinkPad Features<a class="headerlink" href="#yogasmcthinkpad-features" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Ensure YogaSMC.kext is loaded</li>
+<li>Check HKEY device in SSDT-ALL has <code>OSYS = 0x07DF</code></li>
+<li>Verify EC patches are working (ESEN region)</li>
+</ul>
+<h2 id="bios-settings-issues">BIOS Settings Issues<a class="headerlink" href="#bios-settings-issues" title="Permanent link">&para;</a></h2>
+<h3 id="required-bios-settings">Required BIOS Settings<a class="headerlink" href="#required-bios-settings" title="Permanent link">&para;</a></h3>
+<p>If experiencing boot issues, verify these critical settings:</p>
+<p><strong>Must be Disabled:</strong>
+- Secure Boot (clear all keys if needed)
+- Vt-d (or enable DisableIOMapper quirk)
+- Enhanced Windows Biometrics
+- Intel SGX
+- Device Guard
+- CSM Support</p>
+<p><strong>Must be Enabled/Set:</strong>
+- UEFI mode (not Legacy)
+- Sleep mode set to "Linux" (not Windows)</p>
+<p><strong>Recommended to Disable:</strong>
+- Wake-on-LAN
+- UEFI network stack
+- Thunderbolt BIOS Assist mode
+- Thunderbolt Security
+- Thunderbolt Preboot
+- Intel AMT
+- Fingerprint predesktop
+- Kernel DMA
+- Unused IO ports (WWAN, fingerprint)</p>
+<h3 id="cfg-lock-warning">CFG Lock Warning<a class="headerlink" href="#cfg-lock-warning" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Cannot be disabled</strong> in standard BIOS menu on X1 Yoga Gen 5</li>
+<li>Located in engineering menu (not accessible)</li>
+<li>Standard unlock methods (modified GRUB, RU.efi) <strong>do not work</strong></li>
+<li>Direct BIOS write with programmer clip is possible but <strong>dangerous</strong> (breaks TPM)</li>
+<li>This EFI uses <code>AppleXcpmCfgLock = True</code> quirk as workaround</li>
+<li>Do not attempt to unlock CFG unless you know what you're doing</li>
+</ul>
+<h2 id="t">T<a class="headerlink" href="#t" title="Permanent link">&para;</a></h2>
+<p>hunderbolt 3 Issues</p>
+<h3 id="external-display-not-working">External Display Not Working<a class="headerlink" href="#external-display-not-working" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Verify Thunderbolt controller appears in System Information → Thunderbolt</li>
+<li>Check cable supports DisplayPort Alt Mode</li>
+<li>Try different USB-C port (both ports support TB3)</li>
+<li>Ensure Thunderbolt Security is disabled in BIOS</li>
+</ul>
+<h3 id="egpu-not-detected">eGPU Not Detected<a class="headerlink" href="#egpu-not-detected" title="Permanent link">&para;</a></h3>
+<ul>
+<li>eGPU support is <strong>untested</strong> with current EFI</li>
+<li>May require SSDT-TB.aml patch (not included by default)</li>
+<li>Check if eGPU is compatible with macOS (AMD GPUs recommended)</li>
+<li>Ensure Thunderbolt Security is disabled in BIOS</li>
+<li>Try connecting eGPU before boot</li>
+</ul>
+<h3 id="thunderbolt-device-not-recognized">Thunderbolt Device Not Recognized<a class="headerlink" href="#thunderbolt-device-not-recognized" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Current EFI has basic TB3 support only</li>
+<li>Advanced hotplug requires SSDT-TB.aml (optional, untested)</li>
+<li>Some TB3 devices may require additional configuration</li>
+<li>Check device compatibility with macOS</li>
+</ul>
+<h3 id="enabling-ssdt-tb-optional">Enabling SSDT-TB (Optional)<a class="headerlink" href="#enabling-ssdt-tb-optional" title="Permanent link">&para;</a></h3>
+<p><code>SSDT-TB.aml</code> is already compiled and present in <code>EFI/OC/ACPI/</code> but <strong>disabled by default</strong>.</p>
+<p>To enable advanced Thunderbolt support:</p>
+<ol>
+<li>Mount EFI partition</li>
+<li>Open <code>config.plist</code> with ProperTree</li>
+<li>Navigate to <code>ACPI → Add</code></li>
+<li>Add new dictionary entry:</li>
+<li>Comment: <code>Thunderbolt 3 Alpine Ridge Support</code></li>
+<li>Enabled: <code>True</code></li>
+<li>Path: <code>SSDT-TB.aml</code></li>
+<li>Save and reboot</li>
+</ol>
+<p><strong>What this enables:</strong>
+- Full Thunderbolt 3 device tree (Intel JHL6540 Alpine Ridge)
+- Proper hotplug support for TB3 devices
+- USB 3.1 controller (XHC2) with 2 USB-C ports
+- ThunderboltDROM configuration
+- Better eGPU compatibility (untested)</p>
+<p><strong>Warning:</strong> This patch is experimental. DisplayPort output works without it. Enable only if you need advanced TB3 features or experience issues with TB3 devices.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

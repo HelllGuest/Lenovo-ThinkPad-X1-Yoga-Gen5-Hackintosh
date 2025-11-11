@@ -1,0 +1,1846 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../acpi/">
+      
+      
+        <link rel="next" href="../efi_diagram/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>⚙️ OpenCore Config Reference – Lenovo ThinkPad X1 Yoga Gen 5 - Lenovo ThinkPad X1 Yoga Gen 5 Hackintosh</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#opencore-config-reference-lenovo-thinkpad-x1-yoga-gen-5" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Lenovo ThinkPad X1 Yoga Gen 5 Hackintosh" class="md-header__button md-logo" aria-label="Lenovo ThinkPad X1 Yoga Gen 5 Hackintosh" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Lenovo ThinkPad X1 Yoga Gen 5 Hackintosh
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ⚙️ OpenCore Config Reference – Lenovo ThinkPad X1 Yoga Gen 5
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Lenovo ThinkPad X1 Yoga Gen 5 Hackintosh" class="md-nav__button md-logo" aria-label="Lenovo ThinkPad X1 Yoga Gen 5 Hackintosh" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Lenovo ThinkPad X1 Yoga Gen 5 Hackintosh
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧭 Installation &amp; Setup Guide – X1 Yoga Gen 5 Hackintosh
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acpi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⚙️ ACPI Configuration – X1 Yoga Gen 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⚙️ OpenCore Config Reference – Lenovo ThinkPad X1 Yoga Gen 5
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⚙️ OpenCore Config Reference – Lenovo ThinkPad X1 Yoga Gen 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#acpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ACPI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ACPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#acpi-patches-configplist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ACPI Patches (config.plist)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#booter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Booter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deviceproperties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DeviceProperties
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kernel
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kernel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kernel-quirks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kernel Quirks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#misc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Misc
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nvram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NVRAM
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#platforminfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PlatformInfo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uefi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UEFI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opencore-configuration-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenCore Configuration Notes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="OpenCore Configuration Notes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#building-your-own-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building Your Own Config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-configuration-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Configuration Details
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Configuration Details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#acpi_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ACPI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#booterquirks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Booter/Quirks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deviceproperties_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DeviceProperties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kernelquirks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kernel/Quirks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kext-load-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kext Load Order
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#miscboot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Misc/Boot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#miscsecurity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Misc/Security
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nvramboot-args" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NVRAM/Boot-args
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nvramadditional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NVRAM/Additional
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#platforminfo_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PlatformInfo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uefireservedmemory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UEFI/ReservedMemory
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config-variants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Config Variants
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiboot-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiboot Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macos-only-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        macOS-Only Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration Tools
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#important-warnings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Important Warnings
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../efi_diagram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🗺️ EFI / ACPI / Kexts / Boot Flow – X1 Yoga Gen 5 Hackintosh
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🖥️ Hardware Compatibility – X1 Yoga Gen 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../peripherals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🖇️ Optional Peripherals &amp; Upgrades – X1 Yoga Gen 5 Hackintosh
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧰 Troubleshooting – X1 Yoga Gen 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#acpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ACPI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ACPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#acpi-patches-configplist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ACPI Patches (config.plist)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#booter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Booter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deviceproperties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DeviceProperties
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kernel
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kernel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kernel-quirks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kernel Quirks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#misc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Misc
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nvram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NVRAM
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#platforminfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PlatformInfo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uefi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UEFI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opencore-configuration-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenCore Configuration Notes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="OpenCore Configuration Notes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#building-your-own-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building Your Own Config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-configuration-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Configuration Details
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Configuration Details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#acpi_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ACPI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#booterquirks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Booter/Quirks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deviceproperties_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DeviceProperties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kernelquirks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kernel/Quirks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kext-load-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kext Load Order
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#miscboot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Misc/Boot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#miscsecurity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Misc/Security
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nvramboot-args" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NVRAM/Boot-args
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nvramadditional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NVRAM/Additional
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#platforminfo_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PlatformInfo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uefireservedmemory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UEFI/ReservedMemory
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config-variants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Config Variants
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiboot-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiboot Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macos-only-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        macOS-Only Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration Tools
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#important-warnings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Important Warnings
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="opencore-config-reference-lenovo-thinkpad-x1-yoga-gen-5">⚙️ OpenCore Config Reference – Lenovo ThinkPad X1 Yoga Gen 5<a class="headerlink" href="#opencore-config-reference-lenovo-thinkpad-x1-yoga-gen-5" title="Permanent link">&para;</a></h1>
+<p>Detailed overview of <code>config.plist</code> sections used in this EFI.</p>
+<hr />
+<h2 id="acpi">ACPI<a class="headerlink" href="#acpi" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Purpose</th>
+<th>Included</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SSDT-ALL.aml</td>
+<td>Combined ACPI patches</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>- _OSI Darwin</td>
+<td>macOS detection</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>- PLUG (_DSM)</td>
+<td>CPU power management (PR00)</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>- USBX</td>
+<td>USB power (5100mA)</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>- PNLF</td>
+<td>Backlight (Intel UHD 620)</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>- ALS0</td>
+<td>Ambient light sensor</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>- PWRB</td>
+<td>Power button device</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>- MCHC/PGMM/PMCR/SRAM/XSPI</td>
+<td>System devices</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>- BUS0/DVL0</td>
+<td>SMBus devices</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>- DMAC</td>
+<td>DMA controller</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>- HPET</td>
+<td>IRQ 0,8,11 fixes</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>- EC Patches</td>
+<td>Battery + HKEY support</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>- RHUB Disable</td>
+<td>For USBMap.kext</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="acpi-patches-configplist">ACPI Patches (config.plist)<a class="headerlink" href="#acpi-patches-configplist" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Patch</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HPET _STA → XSTA</td>
+<td>Rename for HPET override</td>
+</tr>
+<tr>
+<td>HPET _CRS → XCRS</td>
+<td>Rename for IRQ fixes</td>
+</tr>
+<tr>
+<td>IPIC IRQ 2 Patch</td>
+<td>IRQ conflict resolution</td>
+</tr>
+<tr>
+<td>RTC IRQ 8 Patch</td>
+<td>RTC IRQ fix</td>
+</tr>
+<tr>
+<td>TIMR IRQ 0 Patch</td>
+<td>Timer IRQ fix</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="booter">Booter<a class="headerlink" href="#booter" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quirks -&gt; AvoidRuntimeDefrag</td>
+<td>Runtime memory fix</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Quirks -&gt; RebuildAppleMemoryMap</td>
+<td>Memory map rebuild</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Quirks -&gt; SetupVirtualMap</td>
+<td>Memory mapping fix</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Quirks -&gt; SyncRuntimePermissions</td>
+<td>Runtime permissions</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="deviceproperties">DeviceProperties<a class="headerlink" href="#deviceproperties" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PciRoot(0x0)/Pci(0x2,0x0)</td>
+<td>AAPL,ig-platform-id</td>
+<td>0000528A</td>
+</tr>
+<tr>
+<td>framebuffer-patch-enable</td>
+<td>GPU framebuffer patch</td>
+<td>True</td>
+</tr>
+<tr>
+<td>device-id</td>
+<td>GPU spoof</td>
+<td>8A52</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="kernel">Kernel<a class="headerlink" href="#kernel" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Kexts</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Core</td>
+<td>Lilu, VirtualSMC</td>
+<td>Essential framework</td>
+</tr>
+<tr>
+<td>Graphics</td>
+<td>WhateverGreen</td>
+<td>Intel UHD 620 acceleration</td>
+</tr>
+<tr>
+<td>Audio</td>
+<td>AppleALC</td>
+<td>Realtek ALC285 support</td>
+</tr>
+<tr>
+<td>Input</td>
+<td>VoodooI2C, VoodooI2CHID, VoodooPS2Controller, VoodooRMI</td>
+<td>Trackpad, keyboard, TrackPoint</td>
+</tr>
+<tr>
+<td>Networking</td>
+<td>AirportItlwm, IntelBluetoothFirmware, IntelBTPatcher, BlueToolFixup, IntelMausi</td>
+<td>Wi-Fi 6 AX201 + Bluetooth + Ethernet</td>
+</tr>
+<tr>
+<td>Power &amp; Sensors</td>
+<td>SMCBatteryManager, SMCProcessor, SMCSuperIO, SMCLightSensor, YogaSMC, BrightnessKeys, ECEnabler</td>
+<td>Battery, sensors, fan control</td>
+</tr>
+<tr>
+<td>Sleep &amp; Hibernation</td>
+<td>HibernationFixup, RTCMemoryFixup</td>
+<td>Sleep/wake stability</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>NVMeFix</td>
+<td>NVMe SSD optimization</td>
+</tr>
+<tr>
+<td>USB</td>
+<td>USBToolBox, USBMap</td>
+<td>Custom USB port mapping</td>
+</tr>
+<tr>
+<td>System</td>
+<td>RestrictEvents</td>
+<td>System compatibility patches</td>
+</tr>
+</tbody>
+</table>
+<h3 id="kernel-quirks">Kernel Quirks<a class="headerlink" href="#kernel-quirks" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Quirk</th>
+<th>Value</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AppleXcpmCfgLock</td>
+<td>True</td>
+<td>CFG Lock cannot be disabled in BIOS</td>
+</tr>
+<tr>
+<td>CustomSMBIOSGuid</td>
+<td>True</td>
+<td>Required for Windows dual-boot</td>
+</tr>
+<tr>
+<td>DisableIoMapper</td>
+<td>True</td>
+<td>Vt-d disabled in BIOS (recommended)</td>
+</tr>
+<tr>
+<td>DisableLinkeditJettison</td>
+<td>True</td>
+<td>Lilu compatibility</td>
+</tr>
+<tr>
+<td>PanicNoKextDump</td>
+<td>True</td>
+<td>Reduce panic log size</td>
+</tr>
+<tr>
+<td>PowerTimeoutKernelPanic</td>
+<td>True</td>
+<td>Fix power state timeout</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="misc">Misc<a class="headerlink" href="#misc" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Setting</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Boot</td>
+<td>PickerMode</td>
+<td>External</td>
+</tr>
+<tr>
+<td>Boot</td>
+<td>ShowPicker</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Debug</td>
+<td>Target</td>
+<td>67 (verbose + SysReport)</td>
+</tr>
+<tr>
+<td>Security</td>
+<td>ScanPolicy</td>
+<td>0 (all bootable entries)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="nvram">NVRAM<a class="headerlink" href="#nvram" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>boot-args</td>
+<td>Kernel arguments</td>
+<td>rtcfx_exclude=80-AB revpatch=sbvmm</td>
+</tr>
+<tr>
+<td>- rtcfx_exclude</td>
+<td>RTC memory exclusion</td>
+<td>Prevents RTC conflicts (0x80-0xAB)</td>
+</tr>
+<tr>
+<td>- revpatch=sbvmm</td>
+<td>Restrict Events patch</td>
+<td>VMM board ID spoofing</td>
+</tr>
+<tr>
+<td>csr-active-config</td>
+<td>SIP state</td>
+<td>00000000</td>
+</tr>
+<tr>
+<td>prev-lang:kbd</td>
+<td>Language</td>
+<td>en-US:0</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="platforminfo">PlatformInfo<a class="headerlink" href="#platforminfo" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SMBIOS</td>
+<td>System definition</td>
+<td>MacBookPro16,3</td>
+</tr>
+<tr>
+<td>SerialNumber</td>
+<td>Unique serial</td>
+<td>Custom</td>
+</tr>
+<tr>
+<td>MLB</td>
+<td>Logic board ID</td>
+<td>Custom</td>
+</tr>
+<tr>
+<td>ROM</td>
+<td>Last 6 bytes of MAC</td>
+<td>Custom</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="uefi">UEFI<a class="headerlink" href="#uefi" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Setting</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Drivers</td>
+<td>OpenRuntime.efi, HfsPlus.efi</td>
+<td>Boot drivers</td>
+</tr>
+<tr>
+<td>Input</td>
+<td>KeySupport</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Output</td>
+<td>ProvideConsoleGop</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Quirks</td>
+<td>RequestBootVarRouting</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="opencore-configuration-notes">OpenCore Configuration Notes<a class="headerlink" href="#opencore-configuration-notes" title="Permanent link">&para;</a></h2>
+<h3 id="building-your-own-config">Building Your Own Config<a class="headerlink" href="#building-your-own-config" title="Permanent link">&para;</a></h3>
+<p><strong>Important:</strong> Use the provided config as reference only. Follow the <a href="https://dortania.github.io/OpenCore-Install-Guide/">Dortania OpenCore Install Guide</a> to build your own config for the current OpenCore version.</p>
+<h3 id="key-configuration-details">Key Configuration Details<a class="headerlink" href="#key-configuration-details" title="Permanent link">&para;</a></h3>
+<h4 id="acpi_1">ACPI<a class="headerlink" href="#acpi_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Add:</strong> All SSDTs (SSDT-ALL.aml required, SSDT-TB.aml optional)</li>
+<li><strong>Delete:</strong> Consider dropping DMAR table if using that method</li>
+<li><strong>Quirks:</strong> None required</li>
+</ul>
+<h4 id="booterquirks">Booter/Quirks<a class="headerlink" href="#booterquirks" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>DevirtualiseMmio</code>: <strong>False</strong> (unnecessary for this system)</li>
+<li><code>EnableSafeModeSlide</code>: <strong>False</strong> (seems necessary, causes long boot time if disabled)</li>
+<li><code>ProvideCustomSlide</code>: <strong>False</strong> (related to EnableSafeModeSlide)</li>
+<li><code>AvoidRuntimeDefrag</code>: <strong>True</strong></li>
+<li><code>RebuildAppleMemoryMap</code>: <strong>True</strong></li>
+<li><code>SetupVirtualMap</code>: <strong>True</strong></li>
+<li><code>SyncRuntimePermissions</code>: <strong>True</strong></li>
+</ul>
+<h4 id="deviceproperties_1">DeviceProperties<a class="headerlink" href="#deviceproperties_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Audio:</strong> <code>PciRoot(0x0)/Pci(0x1f,0x3)</code> - Realtek ALC285</li>
+<li><strong>Video:</strong> <code>PciRoot(0x0)/Pci(0x2,0x0)</code> - Intel UHD 620 (standard location)</li>
+</ul>
+<h4 id="kernelquirks">Kernel/Quirks<a class="headerlink" href="#kernelquirks" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>AppleXcpmCfgLock</code>: <strong>True</strong> (CFG Lock cannot be disabled in BIOS)</li>
+<li><code>AppleCpuPmCfgLock</code>: <strong>False</strong> (not needed with AppleXcpmCfgLock)</li>
+<li><code>CustomSMBIOSGuid</code>: <strong>True</strong> (for multiboot configuration)</li>
+<li>Set to <strong>False</strong> if using macOS only</li>
+<li><code>DisableIoMapper</code>: <strong>True</strong> (required unless Vt-d disabled in BIOS)</li>
+<li>Recommended for multiboot configuration</li>
+<li><code>DisableLinkeditJettison</code>: <strong>True</strong></li>
+<li><code>PanicNoKextDump</code>: <strong>True</strong></li>
+<li><code>PowerTimeoutKernelPanic</code>: <strong>True</strong></li>
+</ul>
+<h4 id="kext-load-order">Kext Load Order<a class="headerlink" href="#kext-load-order" title="Permanent link">&para;</a></h4>
+<p>See comments in config.plist for proper kext loading order. Critical order:
+1. Lilu.kext (must load first)
+2. VirtualSMC.kext
+3. Lilu plugins (WhateverGreen, AppleALC, etc.)
+4. VoodooI2C dependencies before VoodooI2C
+5. Plugin kexts after parent kexts</p>
+<h4 id="miscboot">Misc/Boot<a class="headerlink" href="#miscboot" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>LauncherOption</code>: <strong>Disabled</strong> for installer or macOS-only</li>
+<li>Set to <strong>Full</strong> for multiboot configuration</li>
+<li><code>PickerMode</code>: <strong>External</strong></li>
+<li><code>ShowPicker</code>: <strong>True</strong></li>
+</ul>
+<h4 id="miscsecurity">Misc/Security<a class="headerlink" href="#miscsecurity" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>ScanPolicy</code>: <strong>0x00280303</strong> (NVMe + USB drives, Apple FS only)</li>
+<li>For OpenLinuxBoot: <strong>0x00284303</strong> (adds Linux bootloader partition)</li>
+<li><code>SecureBootModel</code>: </li>
+<li><strong>Disabled</strong> for installing/updating Sonoma (certain versions)</li>
+<li><strong>j223</strong> for normal use (specific to MacBookPro16,3 SMBIOS)</li>
+<li>See <a href="https://dortania.github.io/OpenCore-Post-Install/universal/security/applesecureboot.html#securebootmodel">Dortania SecureBoot Guide</a></li>
+</ul>
+<h4 id="nvramboot-args">NVRAM/Boot-args<a class="headerlink" href="#nvramboot-args" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>rtcfx_exclude=80-AB</code>: Required for hibernation (RTCMemoryFixup)</li>
+<li><code>revpatch=sbvmm</code>: RestrictEvents option, required for Sonoma+ upgrades</li>
+<li>Debug configs include additional debugging boot-args</li>
+</ul>
+<h4 id="nvramadditional">NVRAM/Additional<a class="headerlink" href="#nvramadditional" title="Permanent link">&para;</a></h4>
+<ul>
+<li>UUID <code>E09B9297-7928-4440-9AAB-D1F8536FBF0A</code>: HibernationFixup configuration</li>
+<li><code>hbfx-ahbm</code>: 56 (0x38)</li>
+</ul>
+<h4 id="platforminfo_1">PlatformInfo<a class="headerlink" href="#platforminfo_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>UpdateSMBIOSMode</code>: <strong>Custom</strong> for multiboot configuration</li>
+<li>Set to <strong>Create</strong> if using macOS only</li>
+<li><code>SystemProductName</code>: <strong>MacBookPro16,3</strong></li>
+<li>Generate unique serials with <a href="https://github.com/corpnewt/GenSMBIOS">GenSMBIOS</a></li>
+</ul>
+<h4 id="uefireservedmemory">UEFI/ReservedMemory<a class="headerlink" href="#uefireservedmemory" title="Permanent link">&para;</a></h4>
+<ul>
+<li>One memory region reserved (apparently required for hibernation)</li>
+<li>Check config.plist for specific address range</li>
+</ul>
+<h3 id="config-variants">Config Variants<a class="headerlink" href="#config-variants" title="Permanent link">&para;</a></h3>
+<p>This EFI may include different config variants:
+- <strong>config.plist</strong>: Production config (minimal debug)
+- <strong>config_debug.plist</strong>: Debug config (verbose logging, boot picker)
+- <strong>config_installer.plist</strong>: Installer config (standard debugging boot-args)</p>
+<p>Main differences:
+- Debug options enabled/disabled
+- Boot picker interface settings
+- Logging verbosity</p>
+<h3 id="multiboot-configuration">Multiboot Configuration<a class="headerlink" href="#multiboot-configuration" title="Permanent link">&para;</a></h3>
+<p>If dual-booting with Windows/Linux:
+- <code>CustomSMBIOSGuid</code>: <strong>True</strong>
+- <code>UpdateSMBIOSMode</code>: <strong>Custom</strong>
+- <code>LauncherOption</code>: <strong>Full</strong>
+- <code>DisableIoMapper</code>: <strong>True</strong> (recommended)
+- Consider <code>ScanPolicy</code> settings for other OS visibility</p>
+<h3 id="macos-only-configuration">macOS-Only Configuration<a class="headerlink" href="#macos-only-configuration" title="Permanent link">&para;</a></h3>
+<p>If using macOS exclusively:
+- <code>CustomSMBIOSGuid</code>: <strong>False</strong>
+- <code>UpdateSMBIOSMode</code>: <strong>Create</strong>
+- <code>LauncherOption</code>: <strong>Disabled</strong>
+- <code>SecureBootModel</code>: <strong>j223</strong></p>
+<hr />
+<h2 id="configuration-tools">Configuration Tools<a class="headerlink" href="#configuration-tools" title="Permanent link">&para;</a></h2>
+<h3 id="recommended">Recommended<a class="headerlink" href="#recommended" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><a href="https://github.com/corpnewt/ProperTree">ProperTree</a></strong> - Plist editor (cross-platform)</li>
+<li><strong><a href="https://github.com/corpnewt/GenSMBIOS">GenSMBIOS</a></strong> - Generate SMBIOS data</li>
+<li><strong><a href="https://github.com/corpnewt/MountEFI">MountEFI</a></strong> - Mount EFI partitions</li>
+<li><strong><a href="https://github.com/corpnewt/OCConfigCompare">OCConfigCompare</a></strong> - Compare configs</li>
+</ul>
+<h3 id="optional">Optional<a class="headerlink" href="#optional" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><a href="https://mackie100projects.altervista.org/opencore-configurator/">OpenCore Configurator</a></strong> - GUI editor (macOS only)</li>
+<li><strong><a href="https://github.com/ic005k/OCAuxiliaryTools">OCAT</a></strong> - All-in-one tool (cross-platform)</li>
+<li><strong><a href="https://www.sl-soft.de/kext-updater/">Kext Updater</a></strong> - Update kexts (macOS only)</li>
+</ul>
+<hr />
+<h2 id="important-warnings">Important Warnings<a class="headerlink" href="#important-warnings" title="Permanent link">&para;</a></h2>
+<p>⚠️ <strong>Never use someone else's SMBIOS data</strong> - Generate your own with GenSMBIOS</p>
+<p>⚠️ <strong>Always backup working EFI</strong> before making changes</p>
+<p>⚠️ <strong>Test changes on USB</strong> before copying to main EFI partition</p>
+<p>⚠️ <strong>Follow Dortania guide</strong> for OpenCore updates - don't just replace files</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>
