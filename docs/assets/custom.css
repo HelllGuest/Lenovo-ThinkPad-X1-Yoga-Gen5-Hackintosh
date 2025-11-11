@@ -1,0 +1,33 @@
+/* Custom banner size */
+.md-logo {
+    max-width: 500px;
+    margin-bottom: 1rem;
+}
+
+/* Mermaid diagram background */
+.mermaid {
+    background-color: #f5f5f5;
+    border-radius: 12px;
+    padding: 12px;
+}
+
+/* Dark mode Mermaid override */
+@media (prefers-color-scheme: dark) {
+    .mermaid {
+        background-color: #1e1e1e;
+        color: #ffffff;
+    }
+}
+
+/* Code block styling */
+.md-typeset pre code {
+    border-radius: 8px;
+    padding: 8px;
+    background-color: #f0f0f0;
+}
+
+@media (prefers-color-scheme: dark) {
+    .md-typeset pre code {
+        background-color: #2b2b2b;
+    }
+}

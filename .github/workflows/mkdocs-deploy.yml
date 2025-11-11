@@ -1,0 +1,69 @@
+site_name: "Lenovo X1 Yoga Gen 5 Hackintosh"
+site_description: "EFI and documentation for macOS Ventura 13.7.8 on Lenovo ThinkPad X1 Yoga Gen 5"
+site_author: "Your Name"
+site_url: "https://helllguest.github.io/Lenovo-ThinkPad-X1-Yoga-Gen5-Hackintosh"
+
+theme:
+  name: material
+  logo: "docs/assets/banner.svg"
+  favicon: "docs/assets/favicon.ico"
+  palette:
+    - scheme: default
+      primary: "blue"
+      accent: "orange"
+    - scheme: slate
+      primary: "blue"
+      accent: "orange"
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - search.highlight
+    - search.suggest
+  font:
+    text: "Roboto"
+    code: "Fira Code"
+
+extra_css:
+  - "docs/assets/custom.css"
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.tasklist
+  - pymdownx.keys
+  - pymdownx.tabbed
+  - pymdownx.snippets
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.betterem
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.mermaid2
+
+nav:
+  - Home: index.md
+  - Hardware: hardware.md
+  - ACPI: acpi.md
+  - Config Reference: config_reference.md
+  - EFI Diagram: efi_diagram.md
+  - Peripherals: peripherals.md
+  - Troubleshooting: troubleshooting.md
+  - Changelog: CHANGELOG.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/HelllGuest
+  generator: false
+  footer:
+    copyright: "© 2025 Your Name • Maintained with ❤️ for the ThinkPad community"
+    last_updated: true
