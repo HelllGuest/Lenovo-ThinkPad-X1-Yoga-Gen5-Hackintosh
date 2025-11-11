@@ -78,7 +78,8 @@ EFI/
     ├── ACPI/
     ├── Drivers/
     ├── Kexts/
-    └── config.plist
+    ├── config.plist
+    └── OpenCore.efi
 ```
 
 > Reference: **[Full Config Breakdown](./docs/config_reference.md)**

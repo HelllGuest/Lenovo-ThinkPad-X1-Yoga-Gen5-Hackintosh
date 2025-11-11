@@ -61,7 +61,7 @@ Detailed overview of `config.plist` sections used in this EFI.
 | Core | Lilu, VirtualSMC | Essential framework |
 | Graphics | WhateverGreen | Intel UHD 620 acceleration |
 | Audio | AppleALC | Realtek ALC285 support |
-| Input | VoodooI2C, VoodooI2CHID, VoodooPS2Controller, VoodooRMI | Trackpad, keyboard, TrackPoint |
+| Input | VoodooI2C, VoodooI2CHID, VoodooGPIO, VoodooI2CServices, VoodooInput, VoodooPS2Controller, VoodooPS2Keyboard, VoodooPS2Mouse, VoodooPS2Trackpad, VoodooRMI, RMII2C, RMISMBus | Trackpad, keyboard, TrackPoint |
 | Networking | AirportItlwm, IntelBluetoothFirmware, IntelBTPatcher, BlueToolFixup, IntelMausi | Wi-Fi 6 AX201 + Bluetooth + Ethernet |
 | Power & Sensors | SMCBatteryManager, SMCProcessor, SMCSuperIO, SMCLightSensor, YogaSMC, BrightnessKeys, ECEnabler | Battery, sensors, fan control |
 | Sleep & Hibernation | HibernationFixup, RTCMemoryFixup | Sleep/wake stability |
