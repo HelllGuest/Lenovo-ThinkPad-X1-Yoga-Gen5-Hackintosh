@@ -1128,13 +1128,92 @@
 4. Save and reboot</p>
 <p><strong>Current Status:</strong>
 - ✅ File compiled and present in <code>EFI/OC/ACPI/SSDT-TB.aml</code>
+- ✅ Hardware-specific DROM data integrated (extracted from ThinkPad X1 Yoga Gen 5)
 - ❌ Not enabled in config.plist (disabled by default)
 - ⚠️ Requires testing with actual TB3 devices (eGPU, TB3 storage, TB3 docks)
 - ✅ DisplayPort output works without this patch</p>
 <p><strong>Note:</strong> This patch is experimental. Basic DisplayPort functionality works without it. Enable only if you need advanced Thunderbolt features or have issues with TB3 devices.</p>
 <p><strong>Extracting Hardware-Specific DROM Data:</strong></p>
 <p>The current SSDT-TB uses generic ThunderboltDROM data. For advanced features (eGPU, advanced hotplug), you may need hardware-specific DROM data. Methods to extract:</p>
-<p><strong>Method 1: Windows (Recommended)</strong></p>
+<blockquote>
+<p><strong>Note:</strong> The RehabMan Thunderbolt-DROM-Reader tool is no longer available. Linux sysfs method is the most reliable and recommended approach.</p>
+</blockquote>
+<p><strong>Method 1: Linux (Most Reliable - Recommended)</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Install thunderbolt-tools (if available)</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>thunderbolt-tools<span class="w">  </span><span class="c1"># Debian/Ubuntu</span>
+sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>thunderbolt-tools<span class="w">  </span><span class="c1"># Fedora/RHEL</span>
+sudo<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>thunderbolt-tools<span class="w">    </span><span class="c1"># Arch</span>
+
+<span class="c1"># Method A: Debugfs access (most reliable - requires CONFIG_THUNDERBOLT_DEBUGFS=y)</span>
+<span class="c1"># This method works on Arch Linux and other distributions with debugfs support</span>
+<span class="c1"># Mount debugfs (if not already mounted)</span>
+sudo<span class="w"> </span>mount<span class="w"> </span>-t<span class="w"> </span>debugfs<span class="w"> </span>none<span class="w"> </span>/sys/kernel/debug
+
+<span class="c1"># Verify debugfs is accessible</span>
+sudo<span class="w"> </span>ls<span class="w"> </span>/sys/kernel/debug/thunderbolt/
+
+<span class="c1"># Read DROM from debugfs (device 0-0 is the root Thunderbolt controller)</span>
+sudo<span class="w"> </span>cat<span class="w"> </span>/sys/kernel/debug/thunderbolt/0-0/drom<span class="w"> </span>&gt;<span class="w"> </span>drom.bin
+
+<span class="c1"># Verify DROM content and size</span>
+sudo<span class="w"> </span>hexdump<span class="w"> </span>-C<span class="w"> </span>/sys/kernel/debug/thunderbolt/0-0/drom
+wc<span class="w"> </span>-c<span class="w"> </span>drom.bin<span class="w">  </span><span class="c1"># Should show 118 bytes for ThinkPad X1 Yoga Gen 5</span>
+
+<span class="c1"># Verify DROM contains vendor/model strings</span>
+strings<span class="w"> </span>drom.bin<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;lenovo\|thinkpad&quot;</span>
+
+<span class="c1"># Method B: Direct sysfs access (alternative)</span>
+<span class="c1"># List Thunderbolt devices</span>
+ls<span class="w"> </span>-la<span class="w"> </span>/sys/bus/thunderbolt/devices/
+
+<span class="c1"># Read DROM from controller (device 0-0 is usually the root controller)</span>
+<span class="c1"># Note: This path may not exist on all systems</span>
+sudo<span class="w"> </span>cat<span class="w"> </span>/sys/bus/thunderbolt/devices/0-0/drom<span class="w"> </span>&gt;<span class="w"> </span>drom.bin<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;drom file not found in sysfs&quot;</span>
+
+<span class="c1"># Alternative path (if above doesn&#39;t work):</span>
+sudo<span class="w"> </span>cat<span class="w"> </span>/sys/bus/thunderbolt/devices/0-0/nvm_active0/nvmem<span class="w"> </span>&gt;<span class="w"> </span>drom.bin<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;nvmem file not found&quot;</span>
+
+<span class="c1"># Method C: Using thunderbolt-tools (if installed)</span>
+sudo<span class="w"> </span>thunderbolt<span class="w"> </span>read-drom<span class="w"> </span>&gt;<span class="w"> </span>drom.bin
+
+<span class="c1"># Method D: Using boltctl (if available)</span>
+sudo<span class="w"> </span>boltctl<span class="w"> </span>list
+<span class="c1"># Note: boltctl may not provide direct DROM access</span>
+
+<span class="c1"># Verify DROM size (118 bytes / 0x76 for ThinkPad X1 Yoga Gen 5, may vary by model)</span>
+ls<span class="w"> </span>-lh<span class="w"> </span>drom.bin
+file<span class="w"> </span>drom.bin
+wc<span class="w"> </span>-c<span class="w"> </span>drom.bin
+
+<span class="c1"># Verify DROM content (should contain vendor/model strings)</span>
+sudo<span class="w"> </span>hexdump<span class="w"> </span>-C<span class="w"> </span>drom.bin<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-5
+strings<span class="w"> </span>drom.bin
+
+<span class="c1"># Convert binary to hex format for ACPI (correct method)</span>
+python3<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<span class="s">with open(&#39;drom.bin&#39;, &#39;rb&#39;) as f:</span>
+<span class="s">    data = f.read()</span>
+<span class="s">    print(&#39;Buffer (0x%02X)&#39; % len(data))</span>
+<span class="s">    print(&#39;{&#39;)</span>
+<span class="s">    for i in range(0, len(data), 8):</span>
+<span class="s">        hex_bytes = &#39;, &#39;.join([&#39;0x%02X&#39; % b for b in data[i:i+8]])</span>
+<span class="s">        # Add comma if not last line</span>
+<span class="s">        comma = &#39;,&#39; if i+8 &lt; len(data) else &#39;&#39;</span>
+<span class="s">        print(&#39;    /* %04X */  %s%s&#39; % (i, hex_bytes, comma))</span>
+<span class="s">    print(&#39;}&#39;)</span>
+<span class="s">EOF</span>
+
+<span class="c1"># Alternative: Using xxd (simpler but less formatted)</span>
+xxd<span class="w"> </span>-g<span class="w"> </span><span class="m">1</span><span class="w"> </span>-c<span class="w"> </span><span class="m">8</span><span class="w"> </span>drom.bin<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    offset = strtonum(&quot;0x&quot; $1);</span>
+<span class="s1">    printf &quot;    /* %04X */  &quot;, offset;</span>
+<span class="s1">    for(i=2; i&lt;=9; i++) {</span>
+<span class="s1">        if($i != &quot;&quot;) printf &quot;0x%s, &quot;, $i;</span>
+<span class="s1">    }</span>
+<span class="s1">    print &quot;&quot;;</span>
+<span class="s1">}&#39;</span>
+</code></pre></div>
+<p><strong>Method 2: Windows</strong></p>
 <p><strong>Using Intel Thunderbolt Software:</strong>
 1. Boot into Windows on the same machine
 2. Download and install <a href="https://www.intel.com/content/www/us/en/download-center/home.html">Intel Thunderbolt Software</a>
@@ -1151,32 +1230,13 @@
 <span class="n">reg</span> <span class="n">query</span> <span class="s2">&quot;HKLM\SYSTEM\CurrentControlSet\Enum\PCI&quot;</span> <span class="p">/</span><span class="n">s</span> <span class="p">/</span><span class="n">f</span> <span class="s2">&quot;Thunderbolt&quot;</span>
 </code></pre></div></p>
 <p><strong>Using Third-Party Tools:</strong>
-- <a href="https://github.com/RehabMan/Thunderbolt-DROM-Reader">Thunderbolt DROM Reader</a> (if available)
-- Use <code>RWEverything</code> or <code>PCITree</code> to read PCI configuration space
-- DROM is typically stored in PCI config space or NVRAM</p>
-<p><strong>Method 2: Linux (Most Reliable)</strong></p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Install thunderbolt-tools</span>
-sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>thunderbolt-tools<span class="w">  </span><span class="c1"># Debian/Ubuntu</span>
-sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>thunderbolt-tools<span class="w">  </span><span class="c1"># Fedora/RHEL</span>
-sudo<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>thunderbolt-tools<span class="w">    </span><span class="c1"># Arch</span>
-
-<span class="c1"># List Thunderbolt controllers</span>
-sudo<span class="w"> </span>boltctl<span class="w"> </span>list
-
-<span class="c1"># Read DROM from controller (usually /dev/thunderbolt0)</span>
-sudo<span class="w"> </span>cat<span class="w"> </span>/sys/bus/thunderbolt/devices/0-0/drom<span class="w"> </span>&gt;<span class="w"> </span>drom.bin
-
-<span class="c1"># Alternative: Use thunderbolt-tools</span>
-sudo<span class="w"> </span>thunderbolt<span class="w"> </span>read-drom<span class="w"> </span>&gt;<span class="w"> </span>drom.bin
-
-<span class="c1"># Verify DROM size (should be 117 bytes / 0x75 for Alpine Ridge)</span>
-ls<span class="w"> </span>-lh<span class="w"> </span>drom.bin
-
-<span class="c1"># Convert binary to hex format for ACPI</span>
-xxd<span class="w"> </span>-i<span class="w"> </span>drom.bin<span class="w"> </span>&gt;<span class="w"> </span>drom.h
-<span class="c1"># Or with comments:</span>
-xxd<span class="w"> </span>-g<span class="w"> </span><span class="m">1</span><span class="w"> </span>drom.bin<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{printf &quot;/* %04X */  &quot;, NR-1; for(i=2;i&lt;=9;i++) printf &quot;0x%s, &quot;, $i; print &quot;&quot;}&#39;</span>
-</code></pre></div>
+- <strong>RWEverything</strong> - Freeware tool to read PCI configuration space and memory
+  - Download: <a href="http://rweverything.com/">RWEverything</a>
+  - Navigate to PCI devices → Find Thunderbolt controller (8086:15D2)
+  - DROM may be in extended PCI config space or memory-mapped region
+- <strong>PCITree</strong> - Alternative PCI device explorer
+- <strong>HWiNFO64</strong> - System information tool (may show Thunderbolt details)
+- DROM is typically stored in PCI config space, NVRAM, or memory-mapped region</p>
 <p><strong>Method 3: macOS (if Thunderbolt already working)</strong></p>
 <p><strong>Using IORegistryExplorer:</strong>
 1. Download <a href="https://developer.apple.com/download/all/">IORegistryExplorer</a> (requires Apple Developer account)
@@ -1255,11 +1315,15 @@ python3<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
   - Subsystem ID: <code>22BE:17AA</code> (Lenovo ThinkPad X1 Yoga Gen 5)
 - This ensures you're extracting DROM from the correct hardware</p>
 <p><strong>After Replacing DROM:</strong>
-- DROM size is correct (117 bytes / 0x75 for Alpine Ridge)
-- First byte should be 0x13 (DROM header version)
-- Contains valid vendor/device information matching your hardware
+- DROM size is correct (118 bytes / 0x76 for ThinkPad X1 Yoga Gen 5)
+- Contains valid vendor/device information (should show "Lenovo" and "ThinkPad X1 Yoga" strings)
+- Buffer size in SSDT-TB.dsl matches actual DROM size (update <code>Buffer (0x75)</code> to <code>Buffer (0x76)</code> if needed)
 - SSDT compiles without errors (<code>iasl -ve SSDT-TB.dsl</code>)
 - Test with actual Thunderbolt devices to verify functionality</p>
+<p><strong>Example: Extracted DROM from ThinkPad X1 Yoga Gen 5</strong>
+- Size: 118 bytes (0x76)
+- Contains: "Lenovo" and "ThinkPad X1 Yoga" vendor/model strings
+- First bytes: <code>0x61, 0x00, 0x00, 0x00...</code> (hardware-specific format)</p>
 <h3 id="thunderbolt-bios-settings">Thunderbolt BIOS Settings<a class="headerlink" href="#thunderbolt-bios-settings" title="Permanent link">&para;</a></h3>
 <p>For best Thunderbolt compatibility:
 - Thunderbolt BIOS Assist mode → Disabled
