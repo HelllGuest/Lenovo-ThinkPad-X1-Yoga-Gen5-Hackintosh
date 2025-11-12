@@ -1084,8 +1084,10 @@
 <h3 id="hardware-details">Hardware Details<a class="headerlink" href="#hardware-details" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Controller:</strong> Intel JHL6540 Alpine Ridge Thunderbolt 3 (Low Power)</li>
+<li><strong>Device ID:</strong> <code>8086:15D2</code> (Intel Corporation)</li>
+<li><strong>Subsystem ID:</strong> <code>22BE:17AA</code> (Lenovo ThinkPad X1 Yoga Gen 5)</li>
 <li><strong>Ports:</strong> 2x USB-C with Thunderbolt 3 support</li>
-<li><strong>Location:</strong> PCI Root Port 13 (RP13)</li>
+<li><strong>Location:</strong> PCI Root Port 13 (RP13) at <code>0x001D0004</code></li>
 </ul>
 <h3 id="optional-ssdt-tb-patch">Optional SSDT-TB Patch<a class="headerlink" href="#optional-ssdt-tb-patch" title="Permanent link">&para;</a></h3>
 <p>An optional <code>SSDT-TB.aml</code> file is <strong>included but disabled by default</strong>:</p>
@@ -1130,6 +1132,134 @@
 - ⚠️ Requires testing with actual TB3 devices (eGPU, TB3 storage, TB3 docks)
 - ✅ DisplayPort output works without this patch</p>
 <p><strong>Note:</strong> This patch is experimental. Basic DisplayPort functionality works without it. Enable only if you need advanced Thunderbolt features or have issues with TB3 devices.</p>
+<p><strong>Extracting Hardware-Specific DROM Data:</strong></p>
+<p>The current SSDT-TB uses generic ThunderboltDROM data. For advanced features (eGPU, advanced hotplug), you may need hardware-specific DROM data. Methods to extract:</p>
+<p><strong>Method 1: Windows (Recommended)</strong></p>
+<p><strong>Using Intel Thunderbolt Software:</strong>
+1. Boot into Windows on the same machine
+2. Download and install <a href="https://www.intel.com/content/www/us/en/download-center/home.html">Intel Thunderbolt Software</a>
+3. Open Device Manager → System Devices → Thunderbolt Controller
+4. Right-click → Properties → Details → Hardware IDs
+5. Verify the IDs match:
+   - <strong>Device ID:</strong> <code>PCI\VEN_8086&amp;DEV_15D2</code> (Intel JHL6540)
+   - <strong>Subsystem ID:</strong> <code>SUBSYS_17AA22BE</code> (Lenovo ThinkPad X1 Yoga Gen 5)</p>
+<p><strong>Using PowerShell/Registry:</strong>
+<div class="highlight"><pre><span></span><code><span class="c"># Find Thunderbolt controller</span>
+<span class="nb">Get-PnpDevice</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">FriendlyName</span> <span class="o">-like</span> <span class="s2">&quot;*Thunderbolt*&quot;</span><span class="p">}</span>
+
+<span class="c"># Check registry for DROM data</span>
+<span class="n">reg</span> <span class="n">query</span> <span class="s2">&quot;HKLM\SYSTEM\CurrentControlSet\Enum\PCI&quot;</span> <span class="p">/</span><span class="n">s</span> <span class="p">/</span><span class="n">f</span> <span class="s2">&quot;Thunderbolt&quot;</span>
+</code></pre></div></p>
+<p><strong>Using Third-Party Tools:</strong>
+- <a href="https://github.com/RehabMan/Thunderbolt-DROM-Reader">Thunderbolt DROM Reader</a> (if available)
+- Use <code>RWEverything</code> or <code>PCITree</code> to read PCI configuration space
+- DROM is typically stored in PCI config space or NVRAM</p>
+<p><strong>Method 2: Linux (Most Reliable)</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Install thunderbolt-tools</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>thunderbolt-tools<span class="w">  </span><span class="c1"># Debian/Ubuntu</span>
+sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>thunderbolt-tools<span class="w">  </span><span class="c1"># Fedora/RHEL</span>
+sudo<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>thunderbolt-tools<span class="w">    </span><span class="c1"># Arch</span>
+
+<span class="c1"># List Thunderbolt controllers</span>
+sudo<span class="w"> </span>boltctl<span class="w"> </span>list
+
+<span class="c1"># Read DROM from controller (usually /dev/thunderbolt0)</span>
+sudo<span class="w"> </span>cat<span class="w"> </span>/sys/bus/thunderbolt/devices/0-0/drom<span class="w"> </span>&gt;<span class="w"> </span>drom.bin
+
+<span class="c1"># Alternative: Use thunderbolt-tools</span>
+sudo<span class="w"> </span>thunderbolt<span class="w"> </span>read-drom<span class="w"> </span>&gt;<span class="w"> </span>drom.bin
+
+<span class="c1"># Verify DROM size (should be 117 bytes / 0x75 for Alpine Ridge)</span>
+ls<span class="w"> </span>-lh<span class="w"> </span>drom.bin
+
+<span class="c1"># Convert binary to hex format for ACPI</span>
+xxd<span class="w"> </span>-i<span class="w"> </span>drom.bin<span class="w"> </span>&gt;<span class="w"> </span>drom.h
+<span class="c1"># Or with comments:</span>
+xxd<span class="w"> </span>-g<span class="w"> </span><span class="m">1</span><span class="w"> </span>drom.bin<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{printf &quot;/* %04X */  &quot;, NR-1; for(i=2;i&lt;=9;i++) printf &quot;0x%s, &quot;, $i; print &quot;&quot;}&#39;</span>
+</code></pre></div>
+<p><strong>Method 3: macOS (if Thunderbolt already working)</strong></p>
+<p><strong>Using IORegistryExplorer:</strong>
+1. Download <a href="https://developer.apple.com/download/all/">IORegistryExplorer</a> (requires Apple Developer account)
+2. Open IORegistryExplorer
+3. Navigate to: <code>IOThunderboltFamily</code> → <code>IOThunderboltController</code>
+4. Find <code>ThunderboltDROM</code> property
+5. Right-click → Copy as Property List or Export</p>
+<p><strong>Using Terminal:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Find Thunderbolt controller</span>
+ioreg<span class="w"> </span>-l<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-A<span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="s2">&quot;IOThunderboltController&quot;</span>
+
+<span class="c1"># Extract DROM (if accessible)</span>
+ioreg<span class="w"> </span>-l<span class="w"> </span>-w<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;ThunderboltDROM&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-1
+
+<span class="c1"># Use Python script to parse IOReg output</span>
+python3<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
+<span class="s">import plistlib</span>
+<span class="s">import sys</span>
+<span class="s"># Parse IOReg output and extract DROM hex data</span>
+<span class="s">EOF</span>
+</code></pre></div></p>
+<p><strong>Method 4: Direct PCI Access (Advanced)</strong></p>
+<p><strong>Using setpci (Linux):</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Find Thunderbolt controller</span>
+lspci<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>thunderbolt
+<span class="c1"># Output: XX:XX.X Thunderbolt controller: Intel Corporation JHL6540 Thunderbolt 3 Controller</span>
+
+<span class="c1"># Verify device and subsystem IDs</span>
+lspci<span class="w"> </span>-nn<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>thunderbolt
+<span class="c1"># Should show: XX:XX.X Thunderbolt controller [8086:15D2] (rev XX) (subsys [22BE:17AA])</span>
+
+<span class="c1"># Read PCI config space (DROM may be in extended config)</span>
+sudo<span class="w"> </span>setpci<span class="w"> </span>-s<span class="w"> </span>XX:XX.X<span class="w"> </span>BASE_ADDRESS_0
+
+<span class="c1"># Use mmap to read DROM from PCI memory space</span>
+<span class="c1"># (Requires custom tool or kernel module)</span>
+</code></pre></div></p>
+<p><strong>Method 5: BIOS/UEFI Firmware</strong></p>
+<p>Some BIOS/UEFI firmware contains DROM data:
+- Use <code>UEFITool</code> or <code>IFR Extractor</code> to examine firmware
+- Look for Thunderbolt-related ACPI tables
+- Extract from DSDT/SSDT tables if present
+- Requires advanced reverse engineering knowledge</p>
+<p><strong>Converting Extracted DROM to ACPI Format:</strong></p>
+<p>After extracting <code>drom.bin</code> (should be 117 bytes / 0x75 hex):</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Method 1: Using xxd (Linux/macOS)</span>
+xxd<span class="w"> </span>-i<span class="w"> </span>drom.bin<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/unsigned char/\/\* 0000 \*\/  /&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>sed<span class="w"> </span><span class="s1">&#39;s/\[/Buffer (0x75)\n                                        {/&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>sed<span class="w"> </span><span class="s1">&#39;s/\]/}/&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/,/,\n                                            /g&#39;</span>
+
+<span class="c1"># Method 2: Python script</span>
+python3<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<span class="s">with open(&#39;drom.bin&#39;, &#39;rb&#39;) as f:</span>
+<span class="s">    data = f.read()</span>
+<span class="s">    print(&#39;Buffer (0x%02X)&#39; % len(data))</span>
+<span class="s">    print(&#39;{&#39;)</span>
+<span class="s">    for i in range(0, len(data), 8):</span>
+<span class="s">        hex_bytes = &#39;, &#39;.join([&#39;0x%02X&#39; % b for b in data[i:i+8]])</span>
+<span class="s">        print(&#39;    /* %04X */  %s%s&#39; % (i, hex_bytes, &#39;,&#39; if i+8 &lt; len(data) else &#39;&#39;))</span>
+<span class="s">    print(&#39;}&#39;)</span>
+<span class="s">EOF</span>
+</code></pre></div>
+<p><strong>Replacing DROM in SSDT-TB.dsl:</strong></p>
+<ol>
+<li>Open <code>EFI/OC/ACPI/SSDT-TB.dsl</code></li>
+<li>Find the <code>ThunderboltDROM</code> buffer (around line 263-280)</li>
+<li>Replace the hex values with your extracted DROM data</li>
+<li>Ensure buffer size matches (0x75 = 117 bytes)</li>
+<li>Recompile: <code>iasl -ve SSDT-TB.dsl</code></li>
+<li>Test with actual Thunderbolt devices</li>
+</ol>
+<p><strong>Verification:</strong></p>
+<p><strong>Before Extraction:</strong>
+- Verify controller IDs match:
+  - Device ID: <code>8086:15D2</code> (Intel JHL6540)
+  - Subsystem ID: <code>22BE:17AA</code> (Lenovo ThinkPad X1 Yoga Gen 5)
+- This ensures you're extracting DROM from the correct hardware</p>
+<p><strong>After Replacing DROM:</strong>
+- DROM size is correct (117 bytes / 0x75 for Alpine Ridge)
+- First byte should be 0x13 (DROM header version)
+- Contains valid vendor/device information matching your hardware
+- SSDT compiles without errors (<code>iasl -ve SSDT-TB.dsl</code>)
+- Test with actual Thunderbolt devices to verify functionality</p>
 <h3 id="thunderbolt-bios-settings">Thunderbolt BIOS Settings<a class="headerlink" href="#thunderbolt-bios-settings" title="Permanent link">&para;</a></h3>
 <p>For best Thunderbolt compatibility:
 - Thunderbolt BIOS Assist mode → Disabled
