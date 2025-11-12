@@ -1,8 +1,28 @@
 /*
- * A big Thunderbolt patch. I have absolutely no idea what it does.
- * Seems to work, in that I have Thunderbolt controller in PCI devices.
- * Requires further testing with actual Thundebolt devices.
- *
+ * Thunderbolt 3 Alpine Ridge (JHL6540) Device Tree Patch
+ * 
+ * This SSDT creates a complete Thunderbolt 3 device tree for macOS compatibility.
+ * The native DSDT only provides RP13 as a generic PCI root port with PXSX/HRUS
+ * devices. This patch disables those native devices and creates the full Thunderbolt
+ * topology required by macOS:
+ * 
+ * - UPSB (Upstream Bridge) - Main Thunderbolt bridge
+ * - DSB0-6 (Downstream Bridges) - Thunderbolt routing bridges
+ * - NHI0 (Native Host Interface) - Thunderbolt controller
+ * - XHC2 (USB 3.1 Controller) - USB-C ports with RHUB/SSP1/SSP2
+ * 
+ * Device Location: PCI Root Port 13 (RP13) at 0x001D0004
+ * Controller: Intel JHL6540 Alpine Ridge Thunderbolt 3 (Low Power)
+ * Device ID: 8086:15D2 (Intel Corporation)
+ * Subsystem ID: 22BE:17AA (Lenovo ThinkPad X1 Yoga Gen 5)
+ * 
+ * Note: This is a synthetic device tree. The actual hardware topology may differ.
+ * ThunderboltDROM contains generic data and may need hardware-specific values for
+ * advanced features (eGPU, hotplug, etc.).
+ * 
+ * To extract hardware-specific DROM data, see:
+ * docs/hardware.md - "Extracting Hardware-Specific DROM Data" section
+ * Methods available: Windows, Linux (recommended), macOS, or BIOS/UEFI extraction
  */
 
 DefinitionBlock ("", "SSDT", 2, "hack", "ThunderB", 0x00000000)
@@ -11,7 +31,7 @@ DefinitionBlock ("", "SSDT", 2, "hack", "ThunderB", 0x00000000)
     External (_SB_.PCI0.LPCB, DeviceObj)
     External (_SB_.PCI0.RP13, DeviceObj)
     External (_SB_.PCI0.RP13.PXSX, DeviceObj)
-    External (HRUS, IntObj)
+    External (_SB_.PCI0.RP13.HRUS, DeviceObj)
     Scope (\)
     {
         Method (DTGP, 5, NotSerialized) //DGTP
