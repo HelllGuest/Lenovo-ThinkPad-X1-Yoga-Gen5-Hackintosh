@@ -159,6 +159,7 @@ RP13 (Root Port 13)
 
 **Current Status:**
 - ✅ File compiled and present in `EFI/OC/ACPI/SSDT-TB.aml`
+- ✅ Hardware-specific DROM data integrated (extracted from ThinkPad X1 Yoga Gen 5)
 - ❌ Not enabled in config.plist (disabled by default)
 - ⚠️ Requires testing with actual TB3 devices (eGPU, TB3 storage, TB3 docks)
 - ✅ DisplayPort output works without this patch
@@ -169,7 +170,87 @@ RP13 (Root Port 13)
 
 The current SSDT-TB uses generic ThunderboltDROM data. For advanced features (eGPU, advanced hotplug), you may need hardware-specific DROM data. Methods to extract:
 
-**Method 1: Windows (Recommended)**
+> **Note:** The RehabMan Thunderbolt-DROM-Reader tool is no longer available. Linux sysfs method is the most reliable and recommended approach.
+
+**Method 1: Linux (Most Reliable - Recommended)**
+
+```bash
+# Install thunderbolt-tools (if available)
+sudo apt install thunderbolt-tools  # Debian/Ubuntu
+sudo dnf install thunderbolt-tools  # Fedora/RHEL
+sudo pacman -S thunderbolt-tools    # Arch
+
+# Method A: Debugfs access (most reliable - requires CONFIG_THUNDERBOLT_DEBUGFS=y)
+# This method works on Arch Linux and other distributions with debugfs support
+# Mount debugfs (if not already mounted)
+sudo mount -t debugfs none /sys/kernel/debug
+
+# Verify debugfs is accessible
+sudo ls /sys/kernel/debug/thunderbolt/
+
+# Read DROM from debugfs (device 0-0 is the root Thunderbolt controller)
+sudo cat /sys/kernel/debug/thunderbolt/0-0/drom > drom.bin
+
+# Verify DROM content and size
+sudo hexdump -C /sys/kernel/debug/thunderbolt/0-0/drom
+wc -c drom.bin  # Should show 118 bytes for ThinkPad X1 Yoga Gen 5
+
+# Verify DROM contains vendor/model strings
+strings drom.bin | grep -i "lenovo\|thinkpad"
+
+# Method B: Direct sysfs access (alternative)
+# List Thunderbolt devices
+ls -la /sys/bus/thunderbolt/devices/
+
+# Read DROM from controller (device 0-0 is usually the root controller)
+# Note: This path may not exist on all systems
+sudo cat /sys/bus/thunderbolt/devices/0-0/drom > drom.bin 2>/dev/null || echo "drom file not found in sysfs"
+
+# Alternative path (if above doesn't work):
+sudo cat /sys/bus/thunderbolt/devices/0-0/nvm_active0/nvmem > drom.bin 2>/dev/null || echo "nvmem file not found"
+
+# Method C: Using thunderbolt-tools (if installed)
+sudo thunderbolt read-drom > drom.bin
+
+# Method D: Using boltctl (if available)
+sudo boltctl list
+# Note: boltctl may not provide direct DROM access
+
+# Verify DROM size (118 bytes / 0x76 for ThinkPad X1 Yoga Gen 5, may vary by model)
+ls -lh drom.bin
+file drom.bin
+wc -c drom.bin
+
+# Verify DROM content (should contain vendor/model strings)
+sudo hexdump -C drom.bin | head -5
+strings drom.bin
+
+# Convert binary to hex format for ACPI (correct method)
+python3 << 'EOF'
+with open('drom.bin', 'rb') as f:
+    data = f.read()
+    print('Buffer (0x%02X)' % len(data))
+    print('{')
+    for i in range(0, len(data), 8):
+        hex_bytes = ', '.join(['0x%02X' % b for b in data[i:i+8]])
+        # Add comma if not last line
+        comma = ',' if i+8 < len(data) else ''
+        print('    /* %04X */  %s%s' % (i, hex_bytes, comma))
+    print('}')
+EOF
+
+# Alternative: Using xxd (simpler but less formatted)
+xxd -g 1 -c 8 drom.bin | awk '{
+    offset = strtonum("0x" $1);
+    printf "    /* %04X */  ", offset;
+    for(i=2; i<=9; i++) {
+        if($i != "") printf "0x%s, ", $i;
+    }
+    print "";
+}'
+```
+
+**Method 2: Windows**
 
 **Using Intel Thunderbolt Software:**
 1. Boot into Windows on the same machine
@@ -190,35 +271,13 @@ reg query "HKLM\SYSTEM\CurrentControlSet\Enum\PCI" /s /f "Thunderbolt"
 ```
 
 **Using Third-Party Tools:**
-- [Thunderbolt DROM Reader](https://github.com/RehabMan/Thunderbolt-DROM-Reader) (if available)
-- Use `RWEverything` or `PCITree` to read PCI configuration space
-- DROM is typically stored in PCI config space or NVRAM
-
-**Method 2: Linux (Most Reliable)**
-
-```bash
-# Install thunderbolt-tools
-sudo apt install thunderbolt-tools  # Debian/Ubuntu
-sudo dnf install thunderbolt-tools  # Fedora/RHEL
-sudo pacman -S thunderbolt-tools    # Arch
-
-# List Thunderbolt controllers
-sudo boltctl list
-
-# Read DROM from controller (usually /dev/thunderbolt0)
-sudo cat /sys/bus/thunderbolt/devices/0-0/drom > drom.bin
-
-# Alternative: Use thunderbolt-tools
-sudo thunderbolt read-drom > drom.bin
-
-# Verify DROM size (should be 117 bytes / 0x75 for Alpine Ridge)
-ls -lh drom.bin
-
-# Convert binary to hex format for ACPI
-xxd -i drom.bin > drom.h
-# Or with comments:
-xxd -g 1 drom.bin | awk '{printf "/* %04X */  ", NR-1; for(i=2;i<=9;i++) printf "0x%s, ", $i; print ""}'
-```
+- **RWEverything** - Freeware tool to read PCI configuration space and memory
+  - Download: [RWEverything](http://rweverything.com/)
+  - Navigate to PCI devices → Find Thunderbolt controller (8086:15D2)
+  - DROM may be in extended PCI config space or memory-mapped region
+- **PCITree** - Alternative PCI device explorer
+- **HWiNFO64** - System information tool (may show Thunderbolt details)
+- DROM is typically stored in PCI config space, NVRAM, or memory-mapped region
 
 **Method 3: macOS (if Thunderbolt already working)**
 
@@ -313,11 +372,16 @@ EOF
 - This ensures you're extracting DROM from the correct hardware
 
 **After Replacing DROM:**
-- DROM size is correct (117 bytes / 0x75 for Alpine Ridge)
-- First byte should be 0x13 (DROM header version)
-- Contains valid vendor/device information matching your hardware
+- DROM size is correct (118 bytes / 0x76 for ThinkPad X1 Yoga Gen 5)
+- Contains valid vendor/device information (should show "Lenovo" and "ThinkPad X1 Yoga" strings)
+- Buffer size in SSDT-TB.dsl matches actual DROM size (update `Buffer (0x75)` to `Buffer (0x76)` if needed)
 - SSDT compiles without errors (`iasl -ve SSDT-TB.dsl`)
 - Test with actual Thunderbolt devices to verify functionality
+
+**Example: Extracted DROM from ThinkPad X1 Yoga Gen 5**
+- Size: 118 bytes (0x76)
+- Contains: "Lenovo" and "ThinkPad X1 Yoga" vendor/model strings
+- First bytes: `0x61, 0x00, 0x00, 0x00...` (hardware-specific format)
 
 ### Thunderbolt BIOS Settings
 
