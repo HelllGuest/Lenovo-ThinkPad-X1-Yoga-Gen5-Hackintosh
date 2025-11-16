@@ -1,8 +1,4 @@
 <p align="center">
-  <img src="./docs/assets/banner.svg" width="600" alt="Lenovo X1 Yoga Gen 5 Hackintosh Banner">
-</p>
-
-<p align="center">
   <a href="https://github.com/HelllGuest/Lenovo-ThinkPad-X1-Yoga-Gen5-Hackintosh/releases">
     <img src="https://img.shields.io/badge/macOS-Ventura_13.7.8-orange?style=for-the-badge&logo=apple" />
   </a>
