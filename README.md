@@ -79,8 +79,14 @@ EFI/
     ├── Drivers/
     ├── Kexts/
     ├── config.plist
+    ├── recovery_config.plist
     └── OpenCore.efi
 ```
+
+### Configuration Files
+
+- **config.plist**: Production configuration for daily use with optimized settings, hibernation support, and minimal debug output
+- **recovery_config.plist**: Installation/recovery configuration with verbose boot, debugging enabled, and relaxed security settings
 
 > Reference: **[Full Config Breakdown](./docs/config_reference.md)**
 

@@ -208,15 +208,53 @@ See comments in config.plist for proper kext loading order. Critical order:
 
 ### Config Variants
 
-This EFI may include different config variants:
-- **config.plist**: Production config (minimal debug)
-- **config_debug.plist**: Debug config (verbose logging, boot picker)
-- **config_installer.plist**: Installer config (standard debugging boot-args)
+This EFI includes two configuration files:
 
-Main differences:
-- Debug options enabled/disabled
-- Boot picker interface settings
-- Logging verbosity
+#### config.plist (Production/Daily Use)
+- **Purpose**: Optimized for daily use after successful installation
+- **Boot-args**: `rtcfx_exclude=80-AB revpatch=sbvmm`
+- **SIP**: Enabled (`csr-active-config = 00000000`)
+- **Hibernation**: Enabled with HibernationFixup configuration
+- **Graphics**: Full framebuffer patches with advanced display features
+- **Security**: SecureBootModel = j223, ScanPolicy = 2622211
+- **Debug**: Minimal (Target = 0, DisableWatchDog = False)
+- **Boot**: Clean boot (Timeout = 0, HideAuxiliary = True)
+
+#### recovery_config.plist (Installation/Recovery)
+- **Purpose**: For macOS installation and troubleshooting
+- **Boot-args**: `-v debug=0x100 keepsyms=1 -igfxblt -vi2c-force-polling`
+- **SIP**: Partially disabled (`csr-active-config = 03000000`)
+- **Hibernation**: Disabled (HibernateMode = None)
+- **Graphics**: Basic framebuffer configuration for compatibility
+- **Security**: SecureBootModel = Default, ScanPolicy = 0 (all devices)
+- **Debug**: Full (Target = 3, DisableWatchDog = True)
+- **Boot**: Verbose with picker (Timeout = 5, ShowPicker = True)
+
+#### Key Differences Summary
+
+| Setting | config.plist | recovery_config.plist |
+|---------|--------------|----------------------|
+| **Boot Mode** | Clean, fast boot | Verbose, debug output |
+| **Hibernation** | NVRAM mode enabled | Disabled |
+| **Graphics** | Advanced patches | Basic compatibility |
+| **Security** | Production level | Relaxed for install |
+| **Booter Quirks** | Minimal | Extended for compatibility |
+| **AAPL,ig-platform-id** | 0x3e9b0000 | 0x3e9b0009 |
+
+#### When to Use Each Config
+
+**Use config.plist when:**
+- macOS is successfully installed
+- System is stable and working
+- You want optimal performance and battery life
+- Hibernation/sleep is needed
+
+**Use recovery_config.plist when:**
+- Installing macOS for the first time
+- Troubleshooting boot issues
+- Updating major macOS versions
+- Diagnosing hardware problems
+- Need verbose output for debugging
 
 ### Multiboot Configuration
 

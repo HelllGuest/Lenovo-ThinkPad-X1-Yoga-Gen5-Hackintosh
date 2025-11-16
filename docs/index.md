@@ -40,6 +40,20 @@ sudo diskutil mount /dev/diskXs1
 
 Replace the EFI folder on your USB installer with the provided `EFI/` directory. Ensure the structure matches the [EFI Directory Structure](../README.md#-efi-directory-structure).
 
+**Important:** For installation, rename `recovery_config.plist` to `config.plist`:
+
+```bash
+cd /Volumes/EFI/EFI/OC
+mv config.plist config_production.plist.bak
+mv recovery_config.plist config.plist
+```
+
+The recovery config includes:
+- Verbose boot output for troubleshooting
+- Debug logging enabled
+- Relaxed security settings for installation
+- Basic graphics configuration
+
 ---
 
 ### 4. Configure Serial Numbers
@@ -90,6 +104,19 @@ Update your `config.plist` with generated **Serial, MLB, and ROM** values.
 1. Boot from USB using OpenCore picker
 2. Install macOS Ventura
 3. After installation, mount the system SSD EFI and copy the EFI folder
+4. **Switch to production config:**
+
+```bash
+cd /Volumes/EFI/EFI/OC
+mv config.plist recovery_config.plist
+mv config_production.plist.bak config.plist
+```
+
+The production config provides:
+- Optimized boot settings (no verbose output)
+- Hibernation support enabled
+- Enhanced security settings
+- Full graphics acceleration with advanced framebuffer patches
 
 ---
 

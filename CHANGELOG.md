@@ -49,6 +49,35 @@ Changes:
 
 ## [Unreleased]
 
+### Documentation Updates – 2025-11-16
+
+```yaml
+Added:
+  - recovery_config.plist for macOS installation and troubleshooting
+  - Comprehensive documentation comparing config.plist vs recovery_config.plist
+  - Installation guide section for switching between configs
+  - Boot issues & recovery mode section in troubleshooting guide
+  - Navigation structure to mkdocs.yml for local documentation building
+  
+Changed:
+  - Updated README.md with EFI directory structure including recovery_config.plist
+  - Enhanced config_reference.md with detailed config variants comparison table
+  - Improved installation guide with step-by-step config switching instructions
+  - Completed mkdocs.yml with proper site metadata and navigation
+  
+Removed:
+  - GitHub Actions workflow for automated documentation deployment
+  - .github/workflows/mkdocs-deploy.yml (users can still build docs locally)
+
+Notes:
+  - config.plist: Production config with hibernation, optimized graphics, SIP enabled
+  - recovery_config.plist: Installation config with verbose boot, debug logging, relaxed security
+  - Key difference: AAPL,ig-platform-id (0x3e9b0000 vs 0x3e9b0009)
+  - Users should use recovery_config.plist during installation, then switch to config.plist
+```
+
+---
+
 ```yaml
 Planned:
   - macOS Sequoia support validation

@@ -1,5 +1,46 @@
 # 🧰 Troubleshooting – X1 Yoga Gen 5
 
+## Boot Issues & Recovery Mode
+
+### System Won't Boot or Kernel Panic
+
+If you're experiencing boot failures, switch to the recovery configuration:
+
+```bash
+# Mount EFI partition
+sudo diskutil mount /dev/diskXs1
+cd /Volumes/EFI/EFI/OC
+
+# Backup current config
+mv config.plist config_failed.plist
+
+# Use recovery config
+cp recovery_config.plist config.plist
+```
+
+The recovery config provides:
+- Verbose boot output (`-v`) for error diagnosis
+- Debug logging enabled
+- Basic graphics configuration for compatibility
+- Relaxed security settings
+- Extended booter quirks for problematic systems
+
+### Switching Between Configs
+
+**To recovery mode (for troubleshooting):**
+```bash
+cd /Volumes/EFI/EFI/OC
+mv config.plist config_production.plist
+cp recovery_config.plist config.plist
+```
+
+**Back to production mode (after fixing issues):**
+```bash
+cd /Volumes/EFI/EFI/OC
+mv config.plist recovery_config.plist
+mv config_production.plist config.plist
+```
+
 ## Sleep/Wake Issues
 - Ensure `HibernationFixup.kext` is loaded
 - Check `RTCMemoryFixup.kext` is enabled

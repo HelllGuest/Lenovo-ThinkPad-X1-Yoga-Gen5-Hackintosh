@@ -172,7 +172,7 @@ The current SSDT-TB uses generic ThunderboltDROM data. For advanced features (eG
 
 > **Note:** The RehabMan Thunderbolt-DROM-Reader tool is no longer available. Linux sysfs method is the most reliable and recommended approach.
 
-**Method 1: Linux (Most Reliable - Recommended)**
+**Method 1: Linux (Most Reliable Tested only on Arch - Recommended)**
 
 ```bash
 # Install thunderbolt-tools (if available)
@@ -250,36 +250,7 @@ xxd -g 1 -c 8 drom.bin | awk '{
 }'
 ```
 
-**Method 2: Windows**
-
-**Using Intel Thunderbolt Software:**
-1. Boot into Windows on the same machine
-2. Download and install [Intel Thunderbolt Software](https://www.intel.com/content/www/us/en/download-center/home.html)
-3. Open Device Manager → System Devices → Thunderbolt Controller
-4. Right-click → Properties → Details → Hardware IDs
-5. Verify the IDs match:
-   - **Device ID:** `PCI\VEN_8086&DEV_15D2` (Intel JHL6540)
-   - **Subsystem ID:** `SUBSYS_17AA22BE` (Lenovo ThinkPad X1 Yoga Gen 5)
-
-**Using PowerShell/Registry:**
-```powershell
-# Find Thunderbolt controller
-Get-PnpDevice | Where-Object {$_.FriendlyName -like "*Thunderbolt*"}
-
-# Check registry for DROM data
-reg query "HKLM\SYSTEM\CurrentControlSet\Enum\PCI" /s /f "Thunderbolt"
-```
-
-**Using Third-Party Tools:**
-- **RWEverything** - Freeware tool to read PCI configuration space and memory
-  - Download: [RWEverything](http://rweverything.com/)
-  - Navigate to PCI devices → Find Thunderbolt controller (8086:15D2)
-  - DROM may be in extended PCI config space or memory-mapped region
-- **PCITree** - Alternative PCI device explorer
-- **HWiNFO64** - System information tool (may show Thunderbolt details)
-- DROM is typically stored in PCI config space, NVRAM, or memory-mapped region
-
-**Method 3: macOS (if Thunderbolt already working)**
+**Method 2: macOS (if Thunderbolt already working)**
 
 **Using IORegistryExplorer:**
 1. Download [IORegistryExplorer](https://developer.apple.com/download/all/) (requires Apple Developer account)
@@ -304,7 +275,7 @@ import sys
 EOF
 ```
 
-**Method 4: Direct PCI Access (Advanced)**
+**Method 3: Direct PCI Access (Advanced)**
 
 **Using setpci (Linux):**
 ```bash
@@ -322,14 +293,6 @@ sudo setpci -s XX:XX.X BASE_ADDRESS_0
 # Use mmap to read DROM from PCI memory space
 # (Requires custom tool or kernel module)
 ```
-
-**Method 5: BIOS/UEFI Firmware**
-
-Some BIOS/UEFI firmware contains DROM data:
-- Use `UEFITool` or `IFR Extractor` to examine firmware
-- Look for Thunderbolt-related ACPI tables
-- Extract from DSDT/SSDT tables if present
-- Requires advanced reverse engineering knowledge
 
 **Converting Extracted DROM to ACPI Format:**
 
