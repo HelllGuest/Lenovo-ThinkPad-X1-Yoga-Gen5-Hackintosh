@@ -1,8 +1,4 @@
 <p align="center">
-  <img src="./docs/assets/banner.svg" width="600" alt="Lenovo X1 Yoga Gen 5 Hackintosh Banner">
-</p>
-
-<p align="center">
   <a href="https://github.com/HelllGuest/Lenovo-ThinkPad-X1-Yoga-Gen5-Hackintosh/releases">
     <img src="https://img.shields.io/badge/macOS-Ventura_13.7.8-orange?style=for-the-badge&logo=apple" />
   </a>
@@ -61,7 +57,7 @@ Stable, power-efficient, and close to native macOS experience.
 | **OpenCore Version** | 1.0.6 (ACDT 2025-10) |
 | **EFI Revision** | 1.0.6-stable |
 | **SMBIOS** | MacBookPro16,3 |
-| **BIOS Version** | 1.40 (CFG Lock cannot be disabled - see [Hardware Guide](./docs/hardware.md#-cfg-lock-status)) |
+| **BIOS Version** | 1.40 (CFG Lock cannot be disabled - see [Hardware Guide](./docs/hardware.md#cfg-lock-status)) |
 | **Bootloader Mode** | UEFI (Secure Boot Off) |
 | **FileVault** | Enabled |
 | **Tested On** | Lenovo ThinkPad X1 Yoga Gen 5 (20UCS33G00) |
@@ -116,7 +112,7 @@ EFI/
   - Optional SSDT-TB.aml available but not included by default
 - **Some function keys**: May need remapping via YogaSMC
 
-> For detailed Thunderbolt 3 support information, see **[Hardware Compatibility Guide](./docs/hardware.md#-thunderbolt-3-support)**  
+> For detailed Thunderbolt 3 support information, see **[Hardware Compatibility Guide](./docs/hardware.md#thunderbolt-3-support)**  
 
 ---
 
@@ -177,14 +173,3 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 Based on the original work by [AlexFullmoon](https://github.com/AlexFullmoon/thinkpad-x1-yoga-5-hack).
 
----
-
-## 🔗 Repository
-
-**GitHub:** [https://github.com/HelllGuest/Lenovo-ThinkPad-X1-Yoga-Gen5-Hackintosh](https://github.com/HelllGuest/Lenovo-ThinkPad-X1-Yoga-Gen5-Hackintosh)
-
-**Issues & Support:** [GitHub Issues](https://github.com/HelllGuest/Lenovo-ThinkPad-X1-Yoga-Gen5-Hackintosh/issues)
-
----
-
-⭐ **If this helped you, please consider starring the repository!**
